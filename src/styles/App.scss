@@ -1,5 +1,15 @@
-@import 'core/reset';
+@import "core/reset";
+@import "core/variables";
+
+@import "layout/header";
+@import "layout/card-section";
+@import "layout/form-design";
+@import "layout/form-fill";
+@import "layout/form-share";
+@import "layout/footer";
+@import "layout/create";
+@import "pages/index";
 
 /*
-  Aquí puedes poner tu código Sass
+  style="background-image: url(./assets/images/giphy.gif)"
 */
