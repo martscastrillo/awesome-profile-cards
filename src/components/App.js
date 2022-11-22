@@ -37,13 +37,18 @@ const [person, setPerson] = useState ({
 
   return (
     <div>
-    <header className="header">
-      <a href="./index.html" className="header__link"><img src={logo}  alt="logo awesome profile-cards"  className="header__link--img
-"/></a>
-      <h1 className="header__title">Awesome profile-cards</h1>
-      
-    </header>
-    <main className="create">
+      <header className="header">
+        <a href="./index.html" className="header__link">
+          <img
+            src={logo}
+            alt="logo awesome profile-cards"
+            className="header__link--img
+"
+          />
+        </a>
+        <h1 className="header__title">Awesome profile-cards</h1>
+      </header>
+      <main className="create">
         <section className="card-section">
           <button className="reset js-reset" onClick={handleReset} >
             <i className="reset-icon fa-regular fa-trash-can"></i>
@@ -54,10 +59,7 @@ const [person, setPerson] = useState ({
               <h2 className="card-text-name js-preview-name">{person.name || 'Nombre Apellidos'}</h2>
               <p className="card-text-job js-preview-job"> {person.job || 'Frontend unicorn'}</p>
             </div>
-            <div
-              className="card-image js-card-img profile__image js__profile-image"
-              
-            ></div>
+            <div className="card-image js-card-img profile__image js__profile-image"></div>
 
             <div className="social-media">
               <a href={`tel:${person.phone || '#'}`} className="social-media-icon js-phone-icon" target="_blank">
@@ -82,20 +84,17 @@ const [person, setPerson] = useState ({
               <div className="design__div">
                 <i className="fa-solid fa-object-ungroup design__div--icon"></i>
                 <legend className="design__div--legend">diseña</legend>
-                <i
-                  className="fa fa-shield fa-shield-up design__div--arrow js-arrow js-arrow-design-up"
-                ></i>
-                <i
-                  className="fa fa-shield design__div--arrow js-arrow js-arrow-design-down collapsed"
-                ></i>
+                <i className="fa fa-shield fa-shield-up design__div--arrow js-arrow js-arrow-design-up"></i>
+                <i className="fa fa-shield design__div--arrow js-arrow js-arrow-design-down collapsed"></i>
               </div>
 
               <div className="design__second js-design">
-              
                 <div className="div2_container">
                   <div className="div2">
                     <ul className="div2__palette">
-                      <label className="div2__palette--checkBox">wonder adalaber</label>
+                      <label className="div2__palette--checkBox">
+                        wonder adalaber
+                      </label>
                       <input
                         type="radio"
                         id="green"
@@ -110,7 +109,9 @@ const [person, setPerson] = useState ({
                   </div>
                   <div className="div2">
                     <ul className="div2__palette">
-                      <label className="div2__palette--checkBox">super frontend</label>
+                      <label className="div2__palette--checkBox">
+                        super frontend
+                      </label>
                       <input
                         type="radio"
                         id="red"
@@ -125,7 +126,9 @@ const [person, setPerson] = useState ({
                   </div>
                   <div className="div2">
                     <ul className="div2__palette">
-                      <label className="div2__palette--checkBox">backend woman</label>
+                      <label className="div2__palette--checkBox">
+                        backend woman
+                      </label>
                       <input
                         type="radio"
                         id="random"
@@ -146,12 +149,8 @@ const [person, setPerson] = useState ({
               <div className="fill__container js-fill-title">
                 <i className="fa-regular fa-keyboard fill__container--icon"></i>
                 <legend className="fill__container--legend">rellena</legend>
-                <i
-                  className="fa fa-shield fill__container--arrow js-arrow js-arrow-fill-down"
-                ></i>
-                <i
-                  className="fa fa-shield fa-shield-up fill__container--arrow js-arrow js-arrow-fill-up collapsed"
-                ></i>
+                <i className="fa fa-shield fill__container--arrow js-arrow js-arrow-fill-down"></i>
+                <i className="fa fa-shield fa-shield-up fill__container--arrow js-arrow js-arrow-fill-up collapsed"></i>
               </div>
 
               <div className="js-fill">
@@ -169,7 +168,9 @@ const [person, setPerson] = useState ({
                   />
                 </div>
                 <div className="fill__job">
-                  <label className="fill__job--label text-label" htmlFor="job">puesto</label>
+                  <label className="fill__job--label text-label" htmlFor="job">
+                    puesto
+                  </label>
                   <input
                     type="text"
                     id="job"
@@ -182,14 +183,15 @@ const [person, setPerson] = useState ({
                 </div>
 
                 <div className="fill__img">
-                  <label className="fill__img--label text-label" htmlFor="img"
-                    >imagen de perfil</label
-                  >
+                  <label className="fill__img--label text-label" htmlFor="img">
+                    imagen de perfil
+                  </label>
                   <label
                     className="fill__img--inputImg input js-input action__upload-btn"
                     htmlFor="img-selector"
-                    >añadir imagen</label
                   >
+                    añadir imagen
+                  </label>
                   <input
                     type="file"
                     name=""
@@ -199,7 +201,12 @@ const [person, setPerson] = useState ({
                 </div>
                 <div className="profile__preview js__profile-preview"></div>
                 <div className="fill__email">
-                  <label className="fill__email--label text-label" htmlFor="email">email</label>
+                  <label
+                    className="fill__email--label text-label"
+                    htmlFor="email"
+                  >
+                    email
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -210,7 +217,12 @@ const [person, setPerson] = useState ({
                   />
                 </div>
                 <div className="fill__tel">
-                  <label className="fill__tel--label text-label" htmlFor="phone">teléfono</label>
+                  <label
+                    className="fill__tel--label text-label"
+                    htmlFor="phone"
+                  >
+                    teléfono
+                  </label>
                   <input
                     type="tel"
                     name="phone"
@@ -233,7 +245,12 @@ const [person, setPerson] = useState ({
                   />
                 </div>
                 <div className="fill__git">
-                  <label className="fill__git--label text-label" htmlFor="github">github</label>
+                  <label
+                    className="fill__git--label text-label"
+                    htmlFor="github"
+                  >
+                    github
+                  </label>
                   <input
                     type="text"
                     name="github"
@@ -250,9 +267,7 @@ const [person, setPerson] = useState ({
               <div className="share__div">
                 <i className="fa-icon fa-solid fa-share-nodes share__div--icon"></i>
                 <legend className="share__div--legend">comparte</legend>
-                <i
-                  className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"
-                ></i>
+                <i className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"></i>
                 <i className="fa fa-shield share__div--arrow js-arrow js-arrow-share-down"></i>
               </div>
 
@@ -262,8 +277,14 @@ const [person, setPerson] = useState ({
               </button>
 
               <div className="share__card hidden js-share-card">
-                <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
-                <a className="share__card--url js-link-card" href="#" target="_blank"></a>
+                <h2 className="share__card--title">
+                  La tarjeta ha sido creada:
+                </h2>
+                <a
+                  className="share__card--url js-link-card"
+                  href="#"
+                  target="_blank"
+                ></a>
 
                 <div className="share__twitter">
                   <a
@@ -278,7 +299,6 @@ const [person, setPerson] = useState ({
                 <p className="line"></p>
               </div>
             </fieldset>
-
           </form>
         </section>
 
