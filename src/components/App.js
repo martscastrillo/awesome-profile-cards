@@ -1,9 +1,40 @@
-
+import {useState} from 'react';
 import '../styles/App.scss';
 import logo from '../images/woman.png';
 import logoAdalab from '../images/logo-adalab.png';
 
 function App() {
+const [person, setPerson] = useState ({
+  name: '',
+  job: '',
+  email: '',
+  phone: '',
+  linkedin: '',
+  github: ''
+});
+
+
+ const handleInput = (ev) => {
+  
+   const inputValue = ev.target.value;
+   const inputName = ev.target.name;
+  
+     setPerson ({...person,[inputName]: inputValue })
+  
+ };
+
+ const handleReset = ()=>{
+  setPerson ({
+    name: '',
+    job: '',
+    email: '',
+    phone: '',
+    linkedin: '',
+    github: ''
+  })
+
+ };
+
   return (
     <div>
     <header className="header">
@@ -14,14 +45,14 @@ function App() {
     </header>
     <main className="create">
         <section className="card-section">
-          <button className="reset js-reset">
+          <button className="reset js-reset" onClick={handleReset} >
             <i className="reset-icon fa-regular fa-trash-can"></i>
             <p className="reset-text">reset</p>
           </button>
           <article className="card js-preview-card">
             <div className="card-text">
-              <h2 className="card-text-name js-preview-name">nombre apellido</h2>
-              <p className="card-text-job js-preview-job">front-end developer</p>
+              <h2 className="card-text-name js-preview-name">{person.name || 'Nombre Apellidos'}</h2>
+              <p className="card-text-job js-preview-job"> {person.job || 'Frontend unicorn'}</p>
             </div>
             <div
               className="card-image js-card-img profile__image js__profile-image"
@@ -29,16 +60,16 @@ function App() {
             ></div>
 
             <div className="social-media">
-              <a href="#" className="social-media-icon js-phone-icon" target="_blank">
-                <i className="fa-solid fa-mobile-screen-button"></i
-              ></a>
-              <a href="#" className="social-media-icon js-email-icon" target="_blank">
+              <a href={`tel:${person.phone || '#'}`} className="social-media-icon js-phone-icon" target="_blank">
+                <i className="fa-solid fa-mobile-screen-button"></i>
+                </a>
+              <a href={`mailto:${person.email || '#'}`} className="social-media-icon js-email-icon" target="_blank">
                 <i className="fa-regular fa-envelope"></i>
               </a>
-              <a href="#" className="social-media-icon js-linkedin-icon" target="_blank">
+              <a href={`https://www.linkedin.com/in/${person.linkedin || 'https://www.linkedin.com/404'}`} className="social-media-icon js-linkedin-icon" target="_blank">
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
-              <a href="#" className="social-media-icon js-github-icon" target="_blank">
+              <a href={`https://github.com/${person.github || '404'}`} className="social-media-icon js-github-icon" target="_blank">
                 <i className="fa-brands fa-github-alt"></i>
               </a>
             </div>
@@ -123,17 +154,17 @@ function App() {
                 ></i>
               </div>
 
-              <div className="js-fill collapsed">
+              <div className="js-fill">
                 <div className="fill__name">
-                  <label className="fill__name--label text-label" htmlFor="name"
-                    >nombre completo</label
-                  >
+                  <label className="fill__name--label text-label" htmlFor="name">
+                    nombre completo </label>
                   <input
                     type="text"
                     name="name"
                     id="name"
                     className="fill__name--inputName input js-name js-input"
                     placeholder="Ej: Sally Jill"
+                    onChange = {handleInput}
                     required
                   />
                 </div>
@@ -145,6 +176,7 @@ function App() {
                     name="job"
                     className="fill__job--inputJob input js-job js-input"
                     placeholder="Ej: Front-end unicorn"
+                    onChange = {handleInput}
                     required
                   />
                 </div>
@@ -174,6 +206,7 @@ function App() {
                     id="email"
                     className="fill__email--inputEmail input js-email js-input"
                     placeholder="sally-hill@gmail.com"
+                    onChange = {handleInput}
                   />
                 </div>
                 <div className="fill__tel">
@@ -183,18 +216,19 @@ function App() {
                     name="phone"
                     id="phone"
                     className="fill__tel--inputTel input js-phone js-input"
+                    onChange = {handleInput}
                     placeholder="Ej: 555-55-55-55"
                   />
                 </div>
                 <div className="fill__linkedin">
-                  <label className="fill__linkedin--label text-label" htmlFor="linkedin"
-                    >linkedin</label
-                  >
+                  <label className="fill__linkedin--label text-label" htmlFor="linkedin">
+                    linkedin</label>
                   <input
                     type="text"
                     name="linkedin"
                     id="linkedin"
                     className="fill__linkedin--inputLinkedin input js-linkedin js-input"
+                    onChange = {handleInput}
                     placeholder="http://linkedin.com/in/sally.hill"
                   />
                 </div>
@@ -206,6 +240,7 @@ function App() {
                     id="github"
                     className="fill__git--inputGit input js-github js-input"
                     placeholder="Ej: @sally-hill"
+                    onChange = {handleInput}
                   />
                 </div>
               </div>
@@ -251,7 +286,7 @@ function App() {
     <footer className="footer">
       <p className="footer__copy">Awesome Women-cards @2022</p>
       <img
-    class="footer__logo"
+    className="footer__logo"
     src={logoAdalab}
     alt="Logo Adalab"
   />
