@@ -1,39 +1,47 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import '../styles/App.scss';
 import logo from '../images/woman.png';
 import logoAdalab from '../images/logo-adalab.png';
 
 function App() {
-const [person, setPerson] = useState ({
-  name: '',
-  job: '',
-  email: '',
-  phone: '',
-  linkedin: '',
-  github: ''
-});
-
-
- const handleInput = (ev) => {
-  
-   const inputValue = ev.target.value;
-   const inputName = ev.target.name;
-  
-     setPerson ({...person,[inputName]: inputValue })
-  
- };
-
- const handleReset = ()=>{
-  setPerson ({
+  const [person, setPerson] = useState({
     name: '',
     job: '',
     email: '',
     phone: '',
     linkedin: '',
-    github: ''
-  })
+    github: '',
+    palette: '1',
+  });
+  let paletteClass = '';
+  const handleInput = (ev) => {
+    const inputValue = ev.target.value;
+    const inputName = ev.target.name;
 
- };
+    setPerson({ ...person, [inputName]: inputValue });
+
+    if (person.palette === '1') {
+      paletteClass = 'js-palette1';
+    }
+    if (person.palette === '2') {
+      paletteClass = 'js-palette2';
+    }
+    if (person.palette === '3') {
+      paletteClass = 'js-palette3';
+    }
+  };
+
+  const handleReset = () => {
+    setPerson({
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+      palette: '1',
+    });
+  };
 
   return (
     <div>
@@ -42,36 +50,60 @@ const [person, setPerson] = useState ({
           <img
             src={logo}
             alt="logo awesome profile-cards"
-            className="header__link--img
-"
+            className="header__link--img"
           />
         </a>
         <h1 className="header__title">Awesome profile-cards</h1>
       </header>
       <main className="create">
         <section className="card-section">
-          <button className="reset js-reset" onClick={handleReset} >
+          <button className="reset js-reset" onClick={handleReset}>
             <i className="reset-icon fa-regular fa-trash-can"></i>
             <p className="reset-text">reset</p>
           </button>
-          <article className="card js-preview-card">
+          <article
+            className={`card js-preview-card js-palette${person.palette}`}
+          >
             <div className="card-text">
-              <h2 className="card-text-name js-preview-name">{person.name || 'Nombre Apellidos'}</h2>
-              <p className="card-text-job js-preview-job"> {person.job || 'Frontend unicorn'}</p>
+              <h2 className="card-text-name js-preview-name">
+                {person.name || 'Nombre Apellidos'}
+              </h2>
+              <p className="card-text-job js-preview-job">
+                {' '}
+                {person.job || 'Frontend unicorn'}
+              </p>
             </div>
             <div className="card-image js-card-img profile__image js__profile-image"></div>
 
             <div className="social-media">
-              <a href={`tel:${person.phone || '#'}`} className="social-media-icon js-phone-icon" target="_blank">
+              <a
+                href={`tel:${person.phone || '#'}`}
+                className="social-media-icon js-phone-icon"
+                target="_blank"
+              >
                 <i className="fa-solid fa-mobile-screen-button"></i>
-                </a>
-              <a href={`mailto:${person.email || '#'}`} className="social-media-icon js-email-icon" target="_blank">
+              </a>
+              <a
+                href={`mailto:${person.email || '#'}`}
+                className="social-media-icon js-email-icon"
+                target="_blank"
+              >
                 <i className="fa-regular fa-envelope"></i>
               </a>
-              <a href={`https://www.linkedin.com/in/${person.linkedin || 'https://www.linkedin.com/404'}`} className="social-media-icon js-linkedin-icon" target="_blank">
+              <a
+                href={`https://www.linkedin.com/in/${
+                  person.linkedin || 'https://www.linkedin.com/404'
+                }`}
+                className="social-media-icon js-linkedin-icon"
+                target="_blank"
+              >
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
-              <a href={`https://github.com/${person.github || '404'}`} className="social-media-icon js-github-icon" target="_blank">
+              <a
+                href={`https://github.com/${person.github || '404'}`}
+                className="social-media-icon js-github-icon"
+                target="_blank"
+              >
                 <i className="fa-brands fa-github-alt"></i>
               </a>
             </div>
@@ -99,8 +131,10 @@ const [person, setPerson] = useState ({
                         type="radio"
                         id="green"
                         name="palette"
-                        className="js-palette1 p1 div2__palette--input"
-                        value="js-palette1"
+                        className="js-palette2 p1 div2__palette--input"
+                        value="1"
+                        checked={person.palette === '1'}
+                        onChange={handleInput}
                       />
                       <li className="div2__palette--darkGreen div2__palette--list"></li>
                       <li className="div2__palette--mediumGreen div2__palette--list"></li>
@@ -117,7 +151,9 @@ const [person, setPerson] = useState ({
                         id="red"
                         name="palette"
                         className="js-palette2 p2 div2__palette--input"
-                        value="js-palette2"
+                        value="2"
+                        checked={person.palette === '2'}
+                        onChange={handleInput}
                       />
                       <li className="div2__palette--darkRed div2__palette--list"></li>
                       <li className="div2__palette--mediumRed div2__palette--list"></li>
@@ -134,7 +170,9 @@ const [person, setPerson] = useState ({
                         id="random"
                         name="palette"
                         className="js-palette3 p3 div2__palette--input"
-                        value="js-palette3"
+                        value="3"
+                        checked={person.palette === '3'}
+                        onChange={handleInput}
                       />
                       <li className="div2__palette--greenThree div2__palette--list"></li>
                       <li className="div2__palette--yellowThree div2__palette--list"></li>
@@ -155,15 +193,20 @@ const [person, setPerson] = useState ({
 
               <div className="js-fill">
                 <div className="fill__name">
-                  <label className="fill__name--label text-label" htmlFor="name">
-                    nombre completo </label>
+                  <label
+                    className="fill__name--label text-label"
+                    htmlFor="name"
+                  >
+                    nombre completo{' '}
+                  </label>
                   <input
                     type="text"
                     name="name"
                     id="name"
                     className="fill__name--inputName input js-name js-input"
                     placeholder="Ej: Sally Jill"
-                    onChange = {handleInput}
+                    onChange={handleInput}
+                    value={person.name}
                     required
                   />
                 </div>
@@ -177,7 +220,8 @@ const [person, setPerson] = useState ({
                     name="job"
                     className="fill__job--inputJob input js-job js-input"
                     placeholder="Ej: Front-end unicorn"
-                    onChange = {handleInput}
+                    onChange={handleInput}
+                    value={person.job}
                     required
                   />
                 </div>
@@ -213,7 +257,8 @@ const [person, setPerson] = useState ({
                     id="email"
                     className="fill__email--inputEmail input js-email js-input"
                     placeholder="sally-hill@gmail.com"
-                    onChange = {handleInput}
+                    onChange={handleInput}
+                    value={person.email}
                   />
                 </div>
                 <div className="fill__tel">
@@ -228,19 +273,25 @@ const [person, setPerson] = useState ({
                     name="phone"
                     id="phone"
                     className="fill__tel--inputTel input js-phone js-input"
-                    onChange = {handleInput}
+                    onChange={handleInput}
+                    value={person.phone}
                     placeholder="Ej: 555-55-55-55"
                   />
                 </div>
                 <div className="fill__linkedin">
-                  <label className="fill__linkedin--label text-label" htmlFor="linkedin">
-                    linkedin</label>
+                  <label
+                    className="fill__linkedin--label text-label"
+                    htmlFor="linkedin"
+                  >
+                    linkedin
+                  </label>
                   <input
                     type="text"
                     name="linkedin"
                     id="linkedin"
                     className="fill__linkedin--inputLinkedin input js-linkedin js-input"
-                    onChange = {handleInput}
+                    onChange={handleInput}
+                    value={person.linkedin}
                     placeholder="http://linkedin.com/in/sally.hill"
                   />
                 </div>
@@ -257,7 +308,8 @@ const [person, setPerson] = useState ({
                     id="github"
                     className="fill__git--inputGit input js-github js-input"
                     placeholder="Ej: @sally-hill"
-                    onChange = {handleInput}
+                    onChange={handleInput}
+                    value={person.github}
                   />
                 </div>
               </div>
@@ -271,7 +323,7 @@ const [person, setPerson] = useState ({
                 <i className="fa fa-shield share__div--arrow js-arrow js-arrow-share-down"></i>
               </div>
 
-              <button className="share__button js-btn-create collapsed">
+              <button className="share__button js-btn-create">
                 <i className="fa-regular fa-address-card share__button--icon"></i>
                 crear tarjeta
               </button>
@@ -301,17 +353,11 @@ const [person, setPerson] = useState ({
             </fieldset>
           </form>
         </section>
-
-    </main>
-    <footer className="footer">
-      <p className="footer__copy">Awesome Women-cards @2022</p>
-      <img
-    className="footer__logo"
-    src={logoAdalab}
-    alt="Logo Adalab"
-  />
-    </footer>
-
+      </main>
+      <footer className="footer">
+        <p className="footer__copy">Awesome Women-cards @2022</p>
+        <img className="footer__logo" src={logoAdalab} alt="Logo Adalab" />
+      </footer>
     </div>
   );
 }
