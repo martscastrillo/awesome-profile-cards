@@ -79,14 +79,13 @@ function App() {
               <a
                 href={`tel:${person.phone || '#'}`}
                 className="social-media-icon js-phone-icon"
-                target="_blank"
-              >
+                target="_blank" rel="noreferer"    >
                 <i className="fa-solid fa-mobile-screen-button"></i>
               </a>
               <a
                 href={`mailto:${person.email || '#'}`}
                 className="social-media-icon js-email-icon"
-                target="_blank"
+                target="_blank" rel="noreferer"
               >
                 <i className="fa-regular fa-envelope"></i>
               </a>
@@ -95,14 +94,14 @@ function App() {
                   person.linkedin || 'https://www.linkedin.com/404'
                 }`}
                 className="social-media-icon js-linkedin-icon"
-                target="_blank"
+                target="_blank" rel="noreferer"
               >
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
               <a
                 href={`https://github.com/${person.github || '404'}`}
                 className="social-media-icon js-github-icon"
-                target="_blank"
+                target="_blank" rel="noreferer"
               >
                 <i className="fa-brands fa-github-alt"></i>
               </a>
@@ -335,14 +334,14 @@ function App() {
                 <a
                   className="share__card--url js-link-card"
                   href="#"
-                  target="_blank"
+                  target="_blank" rel="noreferer"
                 ></a>
 
                 <div className="share__twitter">
                   <a
                     className="share__twitter--twit twitter-share-button js-twitter"
                     href="#"
-                    target="_blank"
+                    target="_blank" rel="noreferer"
                   >
                     <i className="fa-brands fa-twitter twitter-share-button__icon"></i>
                     Compartir en twitter
