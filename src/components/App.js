@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../styles/App.scss';
 import logo from '../images/woman.png';
 import logoAdalab from '../images/logo-adalab.png';
+/* import callToApi from '../services/api'; */
 
 function App() {
   const [person, setPerson] = useState({
@@ -13,6 +14,8 @@ function App() {
     github: '',
     palette: '1',
   });
+  
+  const [resultUrl , setResultUrl] = useState({});
   let paletteClass = '';
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
@@ -43,11 +46,15 @@ function App() {
     });
   };
 
-  const handleShareBtn = () => {
+  // const handleShareBtn = (event) => {
+  //   event.preventDefault(); 
+    /* callToApi().then((response)=>{
+      setResultUrl(response);
+    }) */
     //hacer el fetch
     //coger la url (respuesta del fetch) y guardarla en variable de estado
     //pintar variable de estado y pintarla en la a
-  };
+  // };
 
   return (
     <div>
@@ -335,7 +342,7 @@ function App() {
 
               <button
                 className="share__button js-btn-create"
-                onClick={handleShareBtn}
+                // onClick={handleShareBtn}
               >
                 <i className="fa-regular fa-address-card share__button--icon"></i>
                 crear tarjeta
