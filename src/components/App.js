@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import '../styles/App.scss';
-import logo from '../images/woman.png';
 import logoAdalab from '../images/logo-adalab.png';
 import dataApi from '../services/api';
+import Header from './Header';
 
 function App() {
   const [person, setPerson] = useState({
@@ -60,14 +60,7 @@ function App() {
   return (
     <div>
       <header className="header">
-        <a href="./index.html" className="header__link">
-          <img
-            src={logo}
-            alt="logo awesome profile-cards"
-            className="header__link--img"
-          />
-        </a>
-        <h1 className="header__title">Awesome profile-cards</h1>
+       <Header/>
       </header>
       <main className="create">
         <section className="card-section">
