@@ -14,7 +14,7 @@ function App() {
     github: '',
     palette: '1',
     image:
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffuzzyard.es%2Fen%2Fproducts%2Fpeluche-para-perros-plush-toy-burrito&psig=AOvVaw1_jW1rQCBMR7v1teBSriQK&ust=1669807901904000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNiaj66l0_sCFQAAAAAdAAAAABAJ',
+      'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
   });
 
   const [resultUrl, setResultUrl] = useState({});
@@ -94,7 +94,7 @@ function App() {
                 href={`tel:${person.phone || '#'}`}
                 className="social-media-icon js-phone-icon"
                 target="_blank"
-                rel="noreferer"
+                rel="noreferrer"
               >
                 <i className="fa-solid fa-mobile-screen-button"></i>
               </a>
@@ -102,7 +102,7 @@ function App() {
                 href={`mailto:${person.email || '#'}`}
                 className="social-media-icon js-email-icon"
                 target="_blank"
-                rel="noreferer"
+                rel="noreferrer"
               >
                 <i className="fa-regular fa-envelope"></i>
               </a>
@@ -112,7 +112,7 @@ function App() {
                 }`}
                 className="social-media-icon js-linkedin-icon"
                 target="_blank"
-                rel="noreferer"
+                rel="noreferrer"
               >
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
@@ -120,7 +120,7 @@ function App() {
                 href={`https://github.com/${person.github || '404'}`}
                 className="social-media-icon js-github-icon"
                 target="_blank"
-                rel="noreferer"
+                rel="noreferrer"
               >
                 <i className="fa-brands fa-github-alt"></i>
               </a>
@@ -360,7 +360,7 @@ function App() {
                   className="share__card--url js-link-card"
                   href={person.success ? person.cardURL : null}
                   target="_blank"
-                  rel="noreferer"
+                  rel="noreferrer"
                 >
                   {person.success ? person.cardURL : person.error}
                 </a>
@@ -370,7 +370,7 @@ function App() {
                     className="share__twitter--twit twitter-share-button js-twitter"
                     href="#"
                     target="_blank"
-                    rel="noreferer"
+                    rel="noreferrer"
                   >
                     <i className="fa-brands fa-twitter twitter-share-button__icon"></i>
                     Compartir en twitter
