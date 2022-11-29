@@ -3,6 +3,7 @@ import '../styles/App.scss';
 import logo from '../images/woman.png';
 import logoAdalab from '../images/logo-adalab.png';
 import dataApi from '../services/api';
+import Reset from './Reset'
 
 function App() {
   const [person, setPerson] = useState({
@@ -71,10 +72,7 @@ function App() {
       </header>
       <main className="create">
         <section className="card-section">
-          <button className="reset js-reset" onClick={handleReset}>
-            <i className="reset-icon fa-regular fa-trash-can"></i>
-            <p className="reset-text">reset</p>
-          </button>
+          <Reset btn={handleReset}></Reset>
           <article
             className={`card js-preview-card js-palette${person.palette}`}
           >
