@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../styles/App.scss';
 import logo from '../images/woman.png';
 import logoAdalab from '../images/logo-adalab.png';
-/* import callToApi from '../services/api'; */
+import dataApi from '../services/api';
 
 function App() {
   const [person, setPerson] = useState({
@@ -13,9 +13,12 @@ function App() {
     linkedin: '',
     github: '',
     palette: '1',
+    image:
+      'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffuzzyard.es%2Fen%2Fproducts%2Fpeluche-para-perros-plush-toy-burrito&psig=AOvVaw1_jW1rQCBMR7v1teBSriQK&ust=1669807901904000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNiaj66l0_sCFQAAAAAdAAAAABAJ',
   });
-  
-  const [resultUrl , setResultUrl] = useState({});
+
+  const [resultUrl, setResultUrl] = useState({});
+
   let paletteClass = '';
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
@@ -46,15 +49,13 @@ function App() {
     });
   };
 
-  // const handleShareBtn = (event) => {
-  //   event.preventDefault(); 
-    /* callToApi().then((response)=>{
-      setResultUrl(response);
-    }) */
-    //hacer el fetch
-    //coger la url (respuesta del fetch) y guardarla en variable de estado
-    //pintar variable de estado y pintarla en la a
-  // };
+  const handleShareBtn = (event) => {
+    event.preventDefault(event);
+    dataApi(person).then((data) => {
+      console.log(data);
+      setResultUrl(data);
+    });
+  };
 
   return (
     <div>
@@ -276,6 +277,7 @@ function App() {
                     placeholder="sally-hill@gmail.com"
                     onChange={handleInput}
                     value={person.email}
+                    required
                   />
                 </div>
                 <div className="fill__tel">
@@ -310,6 +312,7 @@ function App() {
                     onChange={handleInput}
                     value={person.linkedin}
                     placeholder="http://linkedin.com/in/sally.hill"
+                    required
                   />
                 </div>
                 <div className="fill__git">
@@ -327,6 +330,7 @@ function App() {
                     placeholder="Ej: @sally-hill"
                     onChange={handleInput}
                     value={person.github}
+                    required
                   />
                 </div>
               </div>
@@ -342,7 +346,7 @@ function App() {
 
               <button
                 className="share__button js-btn-create"
-                // onClick={handleShareBtn}
+                onClick={handleShareBtn}
               >
                 <i className="fa-regular fa-address-card share__button--icon"></i>
                 crear tarjeta
@@ -354,10 +358,12 @@ function App() {
                 </h2>
                 <a
                   className="share__card--url js-link-card"
-                  href="#"
+                  href={person.success ? person.cardURL : null}
                   target="_blank"
                   rel="noreferer"
-                ></a>
+                >
+                  {person.success ? person.cardURL : person.error}
+                </a>
 
                 <div className="share__twitter">
                   <a
