@@ -14,7 +14,7 @@ function App() {
     github: '',
     palette: '1',
     image:
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffuzzyard.es%2Fen%2Fproducts%2Fpeluche-para-perros-plush-toy-burrito&psig=AOvVaw1_jW1rQCBMR7v1teBSriQK&ust=1669807901904000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNiaj66l0_sCFQAAAAAdAAAAABAJ',
+      'data:http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
   });
 
   const [resultUrl, setResultUrl] = useState({});
