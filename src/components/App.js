@@ -7,6 +7,7 @@ import CardPreview from './CardPreview';
 import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
+import ls from '../services/localstorage';
 
 function App() {
   const [person, setPerson] = useState({
@@ -20,7 +21,7 @@ function App() {
     image:
       'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
   });
-
+  const [inputLS, setInputLS] = useState({});
   const [resultUrl, setResultUrl] = useState({});
 
   let paletteClass = '';
@@ -49,6 +50,8 @@ function App() {
     if (person.palette === '3') {
       paletteClass = 'js-palette3';
     }
+    ls.set('inputLS', JSON.stringify(person));
+    
   };
 
   const handleReset = () => {
