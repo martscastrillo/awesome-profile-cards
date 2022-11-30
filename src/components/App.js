@@ -3,6 +3,7 @@ import '../styles/App.scss';
 import logo from '../images/woman.png';
 import logoAdalab from '../images/logo-adalab.png';
 import dataApi from '../services/api';
+import CardPreview from './CardPreview';
 
 function App() {
   const [person, setPerson] = useState({
@@ -75,57 +76,7 @@ function App() {
             <i className="reset-icon fa-regular fa-trash-can"></i>
             <p className="reset-text">reset</p>
           </button>
-          <article
-            className={`card js-preview-card js-palette${person.palette}`}
-          >
-            <div className="card-text">
-              <h2 className="card-text-name js-preview-name">
-                {person.name || 'Nombre Apellidos'}
-              </h2>
-              <p className="card-text-job js-preview-job">
-                {' '}
-                {person.job || 'Frontend unicorn'}
-              </p>
-            </div>
-            <div className="card-image js-card-img profile__image js__profile-image"></div>
-
-            <div className="social-media">
-              <a
-                href={`tel:${person.phone || '#'}`}
-                className="social-media-icon js-phone-icon"
-                target="_blank"
-                rel="noreferer"
-              >
-                <i className="fa-solid fa-mobile-screen-button"></i>
-              </a>
-              <a
-                href={`mailto:${person.email || '#'}`}
-                className="social-media-icon js-email-icon"
-                target="_blank"
-                rel="noreferer"
-              >
-                <i className="fa-regular fa-envelope"></i>
-              </a>
-              <a
-                href={`https://www.linkedin.com/in/${
-                  person.linkedin || 'https://www.linkedin.com/404'
-                }`}
-                className="social-media-icon js-linkedin-icon"
-                target="_blank"
-                rel="noreferer"
-              >
-                <i className="fa-brands fa-linkedin-in"></i>
-              </a>
-              <a
-                href={`https://github.com/${person.github || '404'}`}
-                className="social-media-icon js-github-icon"
-                target="_blank"
-                rel="noreferer"
-              >
-                <i className="fa-brands fa-github-alt"></i>
-              </a>
-            </div>
-          </article>
+          <CardPreview person={person}></CardPreview>
         </section>
 
         <section>
