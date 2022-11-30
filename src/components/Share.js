@@ -1,4 +1,4 @@
-import '../styles/Share.scss';
+import '../styles/layout/Share.scss';
 
 const Share = (props) => {
   const handleShare = (event) => {
