@@ -60,9 +60,7 @@ function App() {
 
   return (
     <div>
-      <header className="header">
-       <Header/>
-      </header>
+      <Header />
       <main className="create">
         <section className="card-section">
           <button className="reset js-reset" onClick={handleReset}>
@@ -124,7 +122,7 @@ function App() {
 
         <section>
           <form className="js-form" method="post">
-          <FormDesign object={person} setobjetc={setPerson}/>
+            <FormDesign object={person} setobjetc={setPerson} />
 
             <fieldset className="fill">
               <div className="fill__container js-fill-title">
@@ -268,9 +266,7 @@ function App() {
           </form>
         </section>
       </main>
-      <footer className="footer">
-       <Footer/>
-      </footer>
+      <Footer />
     </div>
   );
 }
