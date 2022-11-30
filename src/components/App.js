@@ -10,22 +10,27 @@ import Footer from './Footer';
 import ls from '../services/localstorage';
 
 function App() {
-  const [person, setPerson] = useState({
-    name: '',
-    job: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-    palette: '1',
-    image:
-      'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
-  });
-  const [inputLS, setInputLS] = useState({});
+  const [person, setPerson] = useState(
+    ls.get(
+      'inputLS',
+      {} || {
+        name: '',
+        job: '',
+        email: '',
+        phone: '',
+        linkedin: '',
+        github: '',
+        palette: '1',
+        image:
+          'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
+      }
+    )
+  );
+
   const [resultUrl, setResultUrl] = useState({});
 
-  let paletteClass = '';
   const handleInput = (ev) => {
+    let paletteClass = '';
     const inputValue = ev.target.value;
     const inputName = ev.target.name;
     let isValidValue = true;
@@ -50,8 +55,7 @@ function App() {
     if (person.palette === '3') {
       paletteClass = 'js-palette3';
     }
-    ls.set('inputLS', JSON.stringify(person));
-    
+    ls.set('inputLS', person);
   };
 
   const handleReset = () => {
@@ -112,7 +116,11 @@ function App() {
 
         <section>
           <form className="js-form" method="post">
-            <FormDesign object={person} setobjetc={setPerson} handleInput={handleInput}/>
+            <FormDesign
+              object={person}
+              setobjetc={setPerson}
+              handleInput={handleInput}
+            />
 
             <fieldset className="fill">
               <div className="fill__container js-fill-title">
