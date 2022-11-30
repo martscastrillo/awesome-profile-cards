@@ -1,3 +1,5 @@
+import '../styles/layout/_card-section.scss';
+
 function CardPreview(props) {
     return(
         <article
