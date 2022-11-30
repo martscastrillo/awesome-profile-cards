@@ -2,11 +2,8 @@ import { useState } from 'react';
 import '../styles/App.scss';
 import logo from '../images/woman.png';
 import dataApi from '../services/api';
-<<<<<<< HEAD
 import Footer from './Footer';
-=======
 import FormDesign from './FormDesign';
->>>>>>> dev
 
 function App() {
   const [person, setPerson] = useState({
