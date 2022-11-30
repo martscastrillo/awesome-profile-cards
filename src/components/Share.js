@@ -1,16 +1,12 @@
-import { useState } from 'react';
 import dataApi from '../services/api';
-// si se importa desde aqui da katakroker
-//import '../styles/layout/_form-share.scss';
+import '../styles/Share.scss';
 
 const Share = (props) => {
-  const [resultUrl, setResultUrl] = useState({});
-
   const handleShareBtn = (event) => {
     event.preventDefault(event);
     dataApi(props.person).then((data) => {
       console.log(data);
-      setResultUrl(data);
+      props.setResultUrl(data);
     });
   };
 

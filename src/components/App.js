@@ -17,6 +17,8 @@ function App() {
       'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
   });
 
+  const [resultUrl, setResultUrl] = useState({});
+
   let paletteClass = '';
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
@@ -325,7 +327,7 @@ function App() {
                 </div>
               </div>
             </fieldset>
-            <Share person={person} />
+            <Share person={person} setResultUrl={setResultUrl} />
           </form>
         </section>
       </main>
