@@ -1,15 +1,6 @@
-import dataApi from '../services/api';
 import '../styles/Share.scss';
 
 const Share = (props) => {
-  const handleShareBtn = (event) => {
-    event.preventDefault(event);
-    dataApi(props.person).then((data) => {
-      console.log(data);
-      props.setResultUrl(data);
-    });
-  };
-
   return (
     <fieldset className="share">
       <div className="share__div">
@@ -19,7 +10,10 @@ const Share = (props) => {
         <i className="fa fa-shield share__div--arrow js-arrow js-arrow-share-down"></i>
       </div>
 
-      <button className="share__button js-btn-create" onClick={handleShareBtn}>
+      <button
+        className="share__button js-btn-create"
+        onClick={props.handleShareBtn}
+      >
         <i className="fa-regular fa-address-card share__button--icon"></i>
         crear tarjeta
       </button>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../styles/App.scss';
 import logo from '../images/woman.png';
+import dataApi from '../services/api';
 import logoAdalab from '../images/logo-adalab.png';
 import Share from './Share';
 
@@ -46,6 +47,14 @@ function App() {
       linkedin: '',
       github: '',
       palette: '1',
+    });
+  };
+
+  const handleShareBtn = (event) => {
+    event.preventDefault(event);
+    dataApi(person).then((data) => {
+      console.log(data);
+      setResultUrl(data);
     });
   };
 
@@ -327,7 +336,7 @@ function App() {
                 </div>
               </div>
             </fieldset>
-            <Share person={person} setResultUrl={setResultUrl} />
+            <Share person={person} handleShareBtn={handleShareBtn} />
           </form>
         </section>
       </main>
