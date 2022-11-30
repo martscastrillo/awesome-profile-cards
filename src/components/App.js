@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../styles/App.scss';
 import dataApi from '../services/api';
+import Reset from './Reset';
 import Share from './Share';
 import Footer from './Footer';
 import FormDesign from './FormDesign';
@@ -101,10 +102,7 @@ function App() {
       <Header />
       <main className="create">
         <section className="card-section">
-          <button className="reset js-reset" onClick={handleReset}>
-            <i className="reset-icon fa-regular fa-trash-can"></i>
-            <p className="reset-text">reset</p>
-          </button>
+          <Reset btn={handleReset}></Reset>
           <article
             className={`card js-preview-card js-palette${person.palette}`}
           >

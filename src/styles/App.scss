@@ -1,15 +1,12 @@
-@import "core/reset";
-@import "core/Variables";
-@import "layout/header";
-@import "layout/card-section";
-@import "layout/form-fill";
-@import "layout/footer";
-@import "layout/create";
-@import "pages/index";
+@import 'core/reset';
+@import 'core/Variables';
+@import 'layout/form-fill';
+@import 'layout/create';
+@import 'pages/index';
 
 /*
   style="background-image: url(./assets/images/giphy.gif)"
 */
-.hidden{
+.hidden {
   display: none;
 }
