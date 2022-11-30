@@ -1,31 +1,34 @@
-import { useState } from "react";
-import "../styles/App.scss";
-import logo from "../images/woman.png";
-import logoAdalab from "../images/logo-adalab.png";
-import dataApi from "../services/api";
+import { useState } from 'react';
+import '../styles/App.scss';
+import dataApi from '../services/api';
+import Share from './Share';
+import Footer from './Footer';
+import FormDesign from './FormDesign';
+import Header from './Header';
 
 function App() {
   const [person, setPerson] = useState({
-    name: "",
-    job: "",
-    email: "",
-    phone: "",
-    linkedin: "",
-    github: "",
-    palette: "1",
+    name: '',
+    job: '',
+    email: '',
+    phone: '',
+    linkedin: '',
+    github: '',
+    palette: '1',
     image:
-      "http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg",
+      'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
   });
 
   const [resultUrl, setResultUrl] = useState({});
 
-  let paletteClass = "";
+  let paletteClass = '';
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
     const inputName = ev.target.name;
     let isValidValue = true;
 
-    if (inputName === 'name' || inputName === 'job') {    //puedo ir validando según voy escribiendo.
+    if (inputName === 'name' || inputName === 'job') {
+      //puedo ir validando según voy escribiendo.
       isValidValue = onlyLetters(inputValue);
     } else if (inputName === 'phone') {
       isValidValue = isPhoneNumber(inputValue);
@@ -34,43 +37,43 @@ function App() {
     if (isValidValue) {
       setPerson({ ...person, [inputName]: inputValue });
     }
-   
-    if (person.palette === "1") {
-      paletteClass = "js-palette1";
+
+    if (person.palette === '1') {
+      paletteClass = 'js-palette1';
     }
-    if (person.palette === "2") {
-      paletteClass = "js-palette2";
+    if (person.palette === '2') {
+      paletteClass = 'js-palette2';
     }
-    if (person.palette === "3") {
-      paletteClass = "js-palette3";
+    if (person.palette === '3') {
+      paletteClass = 'js-palette3';
     }
   };
 
   const handleReset = () => {
     setPerson({
-      name: "",
-      job: "",
-      email: "",
-      phone: "",
-      linkedin: "",
-      github: "",
-      palette: "1",
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+      palette: '1',
     });
   };
 
-  const handleShareBtn = (event) => {
-    event.preventDefault(event);
+  const createCard = () => {
     dataApi(person).then((data) => {
       console.log(data);
       setResultUrl(data);
     });
   };
 
-  const isValidMail = (event) => {        //se valida en el input al escribir email completo y pierde el foco
+  const isValidMail = (event) => {
+    //se valida en el input al escribir email completo y pierde el foco
     if (/^.+@.+$/.test(event.target.value)) {
       return true;
     }
-    alert("Debes introducir un mail válido!");
+    alert('Debes introducir un mail válido!');
     return false;
   };
 
@@ -79,32 +82,23 @@ function App() {
     if (phone.match(phoneno)) {
       return true;
     } else {
-      alert("Debes introducir un teléfono válido!");
+      alert('Debes introducir un teléfono válido!');
       return false;
     }
   };
 
   const onlyLetters = (str) => {
     if (/^[a-zA-Z\sá-úÁ-Ú´]*$/.test(str)) {
-        return true;
-    }else {
-      alert("El nombre solo puede contener letras");
+      return true;
+    } else {
+      alert('El nombre solo puede contener letras');
       return false;
     }
   };
 
   return (
     <div>
-      <header className="header">
-        <a href="./index.html" className="header__link">
-          <img
-            src={logo}
-            alt="logo awesome profile-cards"
-            className="header__link--img"
-          />
-        </a>
-        <h1 className="header__title">Awesome profile-cards</h1>
-      </header>
+      <Header />
       <main className="create">
         <section className="card-section">
           <button className="reset js-reset" onClick={handleReset}>
@@ -116,18 +110,18 @@ function App() {
           >
             <div className="card-text">
               <h2 className="card-text-name js-preview-name">
-                {person.name || "Nombre Apellidos"}
+                {person.name || 'Nombre Apellidos'}
               </h2>
               <p className="card-text-job js-preview-job">
-                {" "}
-                {person.job || "Frontend unicorn"}
+                {' '}
+                {person.job || 'Frontend unicorn'}
               </p>
             </div>
             <div className="card-image js-card-img profile__image js__profile-image"></div>
 
             <div className="social-media">
               <a
-                href={`tel:${person.phone || "#"}`}
+                href={`tel:${person.phone || '#'}`}
                 className="social-media-icon js-phone-icon"
                 target="_blank"
                 rel="noreferrer"
@@ -135,7 +129,7 @@ function App() {
                 <i className="fa-solid fa-mobile-screen-button"></i>
               </a>
               <a
-                href={`mailto:${person.email || "#"}`}
+                href={`mailto:${person.email || '#'}`}
                 className="social-media-icon js-email-icon"
                 target="_blank"
                 rel="noreferrer"
@@ -144,7 +138,7 @@ function App() {
               </a>
               <a
                 href={`https://www.linkedin.com/in/${
-                  person.linkedin || "https://www.linkedin.com/404"
+                  person.linkedin || 'https://www.linkedin.com/404'
                 }`}
                 className="social-media-icon js-linkedin-icon"
                 target="_blank"
@@ -153,7 +147,7 @@ function App() {
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
               <a
-                href={`https://github.com/${person.github || "404"}`}
+                href={`https://github.com/${person.github || '404'}`}
                 className="social-media-icon js-github-icon"
                 target="_blank"
                 rel="noreferrer"
@@ -166,76 +160,7 @@ function App() {
 
         <section>
           <form className="js-form" method="post">
-            <fieldset className="design">
-              <div className="design__div">
-                <i className="fa-solid fa-object-ungroup design__div--icon"></i>
-                <legend className="design__div--legend">diseña</legend>
-                <i className="fa fa-shield fa-shield-up design__div--arrow js-arrow js-arrow-design-up"></i>
-                <i className="fa fa-shield design__div--arrow js-arrow js-arrow-design-down collapsed"></i>
-              </div>
-
-              <div className="design__second js-design">
-                <div className="div2_container">
-                  <div className="div2">
-                    <ul className="div2__palette">
-                      <label className="div2__palette--checkBox">
-                        wonder adalaber
-                      </label>
-                      <input
-                        type="radio"
-                        id="green"
-                        name="palette"
-                        className="js-palette2 p1 div2__palette--input"
-                        value="1"
-                        checked={person.palette === "1"}
-                        onChange={handleInput}
-                      />
-                      <li className="div2__palette--darkGreen div2__palette--list"></li>
-                      <li className="div2__palette--mediumGreen div2__palette--list"></li>
-                      <li className="div2__palette--lightGreen div2__palette--list"></li>
-                    </ul>
-                  </div>
-                  <div className="div2">
-                    <ul className="div2__palette">
-                      <label className="div2__palette--checkBox">
-                        super frontend
-                      </label>
-                      <input
-                        type="radio"
-                        id="red"
-                        name="palette"
-                        className="js-palette2 p2 div2__palette--input"
-                        value="2"
-                        checked={person.palette === "2"}
-                        onChange={handleInput}
-                      />
-                      <li className="div2__palette--darkRed div2__palette--list"></li>
-                      <li className="div2__palette--mediumRed div2__palette--list"></li>
-                      <li className="div2__palette--lightRed div2__palette--list"></li>
-                    </ul>
-                  </div>
-                  <div className="div2">
-                    <ul className="div2__palette">
-                      <label className="div2__palette--checkBox">
-                        backend woman
-                      </label>
-                      <input
-                        type="radio"
-                        id="random"
-                        name="palette"
-                        className="js-palette3 p3 div2__palette--input"
-                        value="3"
-                        checked={person.palette === "3"}
-                        onChange={handleInput}
-                      />
-                      <li className="div2__palette--greenThree div2__palette--list"></li>
-                      <li className="div2__palette--yellowThree div2__palette--list"></li>
-                      <li className="div2__palette--greyThree div2__palette--list"></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
+            <FormDesign object={person} setobjetc={setPerson} />
 
             <fieldset className="fill">
               <div className="fill__container js-fill-title">
@@ -251,7 +176,7 @@ function App() {
                     className="fill__name--label text-label"
                     htmlFor="name"
                   >
-                    nombre completo{" "}
+                    nombre completo{' '}
                   </label>
                   <input
                     type="text"
@@ -312,7 +237,7 @@ function App() {
                     className="fill__email--inputEmail input js-email js-input"
                     placeholder="sally-hill@gmail.com"
                     onChange={handleInput}
-                    onBlur={isValidMail}   //meto para validad email cuando termino de escribir(input pierde foco)
+                    onBlur={isValidMail} //meto para validad email cuando termino de escribir(input pierde foco)
                     value={person.email}
                     required
                   />
@@ -372,57 +297,15 @@ function App() {
                 </div>
               </div>
             </fieldset>
-
-            <fieldset className="share">
-              <div className="share__div">
-                <i className="fa-icon fa-solid fa-share-nodes share__div--icon"></i>
-                <legend className="share__div--legend">comparte</legend>
-                <i className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"></i>
-                <i className="fa fa-shield share__div--arrow js-arrow js-arrow-share-down"></i>
-              </div>
-
-              <button
-                className="share__button js-btn-create"
-                onClick={handleShareBtn}
-              >
-                <i className="fa-regular fa-address-card share__button--icon"></i>
-                crear tarjeta
-              </button>
-
-              <div className="share__card hidden js-share-card">
-                <h2 className="share__card--title">
-                  La tarjeta ha sido creada:
-                </h2>
-                <a
-                  className="share__card--url js-link-card"
-                  href={person.success ? person.cardURL : null}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {person.success ? person.cardURL : person.error}
-                </a>
-
-                <div className="share__twitter">
-                  <a
-                    className="share__twitter--twit twitter-share-button js-twitter"
-                    href="#"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fa-brands fa-twitter twitter-share-button__icon"></i>
-                    Compartir en twitter
-                  </a>
-                </div>
-                <p className="line"></p>
-              </div>
-            </fieldset>
+            <Share
+              person={person}
+              resultUrl={resultUrl}
+              createCard={createCard}
+            />
           </form>
         </section>
       </main>
-      <footer className="footer">
-        <p className="footer__copy">Awesome Women-cards @2022</p>
-        <img className="footer__logo" src={logoAdalab} alt="Logo Adalab" />
-      </footer>
+      <Footer />
     </div>
   );
 }
