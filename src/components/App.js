@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import '../styles/App.scss';
 import dataApi from '../services/api';
+import Header from './Header';
 import Reset from './Reset';
+import CardPreview from './CardPreview';
+import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
-import FormDesign from './FormDesign';
-import Header from './Header';
-import CardPreview from './CardPreview';
 
 function App() {
   const [person, setPerson] = useState({
@@ -103,10 +103,7 @@ function App() {
       <Header />
       <main className="create">
         <section className="card-section">
-          <button className="reset js-reset" onClick={handleReset}>
-            <i className="reset-icon fa-regular fa-trash-can"></i>
-            <p className="reset-text">reset</p>
-          </button>
+          <Reset btn={handleReset}></Reset>
           <CardPreview person={person}></CardPreview>
         </section>
 
