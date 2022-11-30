@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import '../styles/App.scss';
 import logo from '../images/woman.png';
-import logoAdalab from '../images/logo-adalab.png';
 import dataApi from '../services/api';
+<<<<<<< HEAD
+import Footer from './Footer';
+=======
 import FormDesign from './FormDesign';
+>>>>>>> dev
 
 function App() {
   const [person, setPerson] = useState({
@@ -315,8 +318,7 @@ function App() {
         </section>
       </main>
       <footer className="footer">
-        <p className="footer__copy">Awesome Women-cards @2022</p>
-        <img className="footer__logo" src={logoAdalab} alt="Logo Adalab" />
+       <Footer/>
       </footer>
     </div>
   );
