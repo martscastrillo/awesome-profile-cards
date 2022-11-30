@@ -1,5 +1,5 @@
 
-import '../styles/Form-design.scss';
+import '../styles/layout/FormDesign.scss';
 
 
 function formDesign(props) {
