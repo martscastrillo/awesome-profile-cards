@@ -3,24 +3,13 @@ import '../styles/layout/FormDesign.scss';
 
 
 function formDesign(props) {
+  const handleDesign = (ev)=>{
   
-    const handleInput = (ev) => {
-      let paletteClass = '';
-      const inputValue = ev.target.value;
-      const inputName = ev.target.name;
-  
-      props.setobjetc({ ...props.object, [inputName]: inputValue });
-  
-      if (props.object.palette === '1') {
-        paletteClass = 'js-palette1';
-      }
-      if (props.object.palette === '2') {
-        paletteClass = 'js-palette2';
-      }
-      if (props.object.palette === '3') {
-        paletteClass = 'js-palette3';
-      }
-    };
+
+    props.handleInput();
+  }
+
+
     return(
     <fieldset className="design">
     <div className="design__div">
@@ -44,7 +33,7 @@ function formDesign(props) {
               className="js-palette2 p1 div2__palette--input"
               value="1"
               checked={props.object.palette === '1'}
-              onChange={handleInput}
+              onChange={handleDesign}
             />
             <li className="div2__palette--darkGreen div2__palette--list"></li>
             <li className="div2__palette--mediumGreen div2__palette--list"></li>
@@ -63,7 +52,7 @@ function formDesign(props) {
               className="js-palette2 p2 div2__palette--input"
               value="2"
               checked={props.object.palette === '2'}
-              onChange={handleInput}
+              onChange={handleDesign}
             />
             <li className="div2__palette--darkRed div2__palette--list"></li>
             <li className="div2__palette--mediumRed div2__palette--list"></li>
@@ -82,7 +71,7 @@ function formDesign(props) {
               className="js-palette3 p3 div2__palette--input"
               value="3"
               checked={props.object.palette === '3'}
-              onChange={handleInput}
+              onChange={handleDesign}
             />
             <li className="div2__palette--greenThree div2__palette--list"></li>
             <li className="div2__palette--yellowThree div2__palette--list"></li>

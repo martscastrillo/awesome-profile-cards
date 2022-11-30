@@ -109,7 +109,7 @@ function App() {
 
         <section>
           <form className="js-form" method="post">
-            <FormDesign object={person} setobjetc={setPerson} />
+            <FormDesign object={person} setobjetc={setPerson} handleInput={handleInput}/>
 
             <fieldset className="fill">
               <div className="fill__container js-fill-title">
