@@ -23,21 +23,21 @@ function App() {
 
   const [resultUrl, setResultUrl] = useState({});
 
-  let paletteClass = '';
-  const handleInput = (ev) => {
-    const inputValue = ev.target.value;
-    const inputName = ev.target.name;
+  const handleInput = (input, value) => {
+    let paletteClass = '';
+    // const inputValue = ev.target.value;
+    // const inputName = ev.target.name;
     let isValidValue = true;
 
-    if (inputName === 'name' || inputName === 'job') {
+    if (input === 'name' || input === 'job') {
       //puedo ir validando según voy escribiendo.
-      isValidValue = onlyLetters(inputValue);
-    } else if (inputName === 'phone') {
-      isValidValue = isPhoneNumber(inputValue);
+      isValidValue = onlyLetters(value);
+    } else if (input === 'phone') {
+      isValidValue = isPhoneNumber(value);
     }
 
     if (isValidValue) {
-      setPerson({ ...person, [inputName]: inputValue });
+      setPerson({ ...person, [input]: value });
     }
 
     if (person.palette === '1') {
@@ -109,7 +109,11 @@ function App() {
 
         <section>
           <form className="js-form" method="post">
-            <FormDesign object={person} setobjetc={setPerson} handleInput={handleInput}/>
+            <FormDesign
+              object={person}
+              setobjetc={setPerson}
+              handleInput={handleInput}
+            />
 
             <fieldset className="fill">
               <div className="fill__container js-fill-title">
