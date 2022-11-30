@@ -25,8 +25,18 @@ function App() {
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
     const inputName = ev.target.name;
+    let isValidValue = true;
 
-    setPerson({ ...person, [inputName]: inputValue });
+    if (inputName === 'name' || inputName === 'job') {
+      //puedo ir validando según voy escribiendo.
+      isValidValue = onlyLetters(inputValue);
+    } else if (inputName === 'phone') {
+      isValidValue = isPhoneNumber(inputValue);
+    }
+
+    if (isValidValue) {
+      setPerson({ ...person, [inputName]: inputValue });
+    }
 
     if (person.palette === '1') {
       paletteClass = 'js-palette1';
@@ -56,6 +66,34 @@ function App() {
       console.log(data);
       setResultUrl(data);
     });
+  };
+
+  const isValidMail = (event) => {
+    //se valida en el input al escribir email completo y pierde el foco
+    if (/^.+@.+$/.test(event.target.value)) {
+      return true;
+    }
+    alert('Debes introducir un mail válido!');
+    return false;
+  };
+
+  const isPhoneNumber = (phone) => {
+    var phoneno = /^\+?(\d*)$/;
+    if (phone.match(phoneno)) {
+      return true;
+    } else {
+      alert('Debes introducir un teléfono válido!');
+      return false;
+    }
+  };
+
+  const onlyLetters = (str) => {
+    if (/^[a-zA-Z\sá-úÁ-Ú´]*$/.test(str)) {
+      return true;
+    } else {
+      alert('El nombre solo puede contener letras');
+      return false;
+    }
   };
 
   return (
@@ -199,6 +237,7 @@ function App() {
                     className="fill__email--inputEmail input js-email js-input"
                     placeholder="sally-hill@gmail.com"
                     onChange={handleInput}
+                    onBlur={isValidMail} //meto para validad email cuando termino de escribir(input pierde foco)
                     value={person.email}
                     required
                   />
