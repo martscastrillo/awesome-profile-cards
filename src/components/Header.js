@@ -1,4 +1,5 @@
 import logo from '../images/woman.png';
+import '../styles/layout/_header.scss';
 
 const Header =()=>{
     return (
