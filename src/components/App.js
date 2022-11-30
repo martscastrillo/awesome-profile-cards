@@ -103,7 +103,14 @@ function App() {
       <Header />
       <main className="create">
         <section className="card-section">
+<<<<<<< HEAD
           <Reset btn={handleReset}></Reset>
+=======
+          <button className="reset js-reset" onClick={handleReset}>
+            <i className="reset-icon fa-regular fa-trash-can"></i>
+            <p className="reset-text">reset</p>
+          </button>
+>>>>>>> f6a16b93b0c50a3e98579e7e0d37664c52e95425
           <CardPreview person={person}></CardPreview>
         </section>
 
