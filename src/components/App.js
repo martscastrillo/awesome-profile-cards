@@ -50,8 +50,7 @@ function App() {
     });
   };
 
-  const handleShareBtn = (event) => {
-    event.preventDefault(event);
+  const createCard = () => {
     dataApi(person).then((data) => {
       console.log(data);
       setResultUrl(data);
@@ -336,7 +335,11 @@ function App() {
                 </div>
               </div>
             </fieldset>
-            <Share person={person} handleShareBtn={handleShareBtn} />
+            <Share
+              person={person}
+              resultUrl={resultUrl}
+              createCard={createCard}
+            />
           </form>
         </section>
       </main>

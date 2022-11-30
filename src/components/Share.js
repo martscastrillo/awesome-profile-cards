@@ -1,6 +1,10 @@
 import '../styles/Share.scss';
 
 const Share = (props) => {
+  const handleShare = (event) => {
+    event.preventDefault(event);
+    props.createCard();
+  };
   return (
     <fieldset className="share">
       <div className="share__div">
@@ -10,10 +14,7 @@ const Share = (props) => {
         <i className="fa fa-shield share__div--arrow js-arrow js-arrow-share-down"></i>
       </div>
 
-      <button
-        className="share__button js-btn-create"
-        onClick={props.handleShareBtn}
-      >
+      <button className="share__button js-btn-create" onClick={handleShare}>
         <i className="fa-regular fa-address-card share__button--icon"></i>
         crear tarjeta
       </button>
@@ -22,11 +23,13 @@ const Share = (props) => {
         <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
         <a
           className="share__card--url js-link-card"
-          href={props.person.success ? props.person.cardURL : null}
+          href={props.resultUrl.success ? props.resultUrl.cardURL : null}
           target="_blank"
           rel="noreferrer"
         >
-          {props.person.success ? props.person.cardURL : props.person.error}
+          {props.resultUrl.success
+            ? props.resultUrl.cardURL
+            : props.resultUrl.error}
         </a>
 
         <div className="share__twitter">
