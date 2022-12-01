@@ -23,6 +23,7 @@ function App() {
   });
 
   const [resultUrl, setResultUrl] = useState({});
+  const [hidden, setHidden] = useState(true);
 
   /*Para los collapse
 
@@ -37,6 +38,13 @@ function App() {
     }
   };
 */
+
+  const handleHidden = () => {
+    if (hidden) {
+      return setHidden(false);
+    }
+    //no pongo else porque no necesitamos volver a ocultarlo, si la usuaria quiere volver arriba a cambiar algo al abrir el collapse de formulario deberá cerrarse la sección de compartir
+  };
 
   const handleInput = (input, value) => {
     let paletteClass = '';
@@ -132,6 +140,8 @@ function App() {
               person={person}
               resultUrl={resultUrl}
               createCard={createCard}
+              handleHidden={handleHidden}
+              hidden={hidden}
             />
           </form>
         </section>

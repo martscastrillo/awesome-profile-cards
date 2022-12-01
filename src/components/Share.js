@@ -1,29 +1,10 @@
-import { useState } from 'react';
 import '../styles/layout/Share.scss';
 
 const Share = (props) => {
-  const [hidden, setHidden] = useState(true);
-  const [twitter, setTwitter] = useState(false);
-
-  const handleHidden = () => {
-    if (hidden) {
-      return setHidden(false);
-    }
-  };
-
   const handleShare = (event) => {
-    const handleTwitter = () => {
-      if (props.resultUrl.cardURL) {
-        setTwitter(true);
-      } else {
-        setTwitter(false);
-      }
-    };
-
     event.preventDefault(event);
-    handleHidden();
+    props.handleHidden();
     props.createCard();
-    handleTwitter();
   };
 
   return (
@@ -41,7 +22,9 @@ const Share = (props) => {
       </button>
 
       <div
-        className={`share__card js-share-card ${hidden ? 'hidden' : 'null'}`}
+        className={`share__card js-share-card ${
+          props.hidden ? 'hidden' : 'null'
+        }`}
       >
         <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
         <a
@@ -59,7 +42,7 @@ const Share = (props) => {
           <a
             className="share__twitter--twit twitter-share-button js-twitter"
             href={
-              twitter
+              props.resultUrl.success
                 ? `https://twitter.com/intent/tweet?text=Aquí%20podéis%20ver%20mi%20tarjeta%20virtual&url=${props.resultUrl.cardURL}`
                 : null
             }
