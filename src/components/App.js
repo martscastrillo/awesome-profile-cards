@@ -1,10 +1,14 @@
 import { useState } from "react";
 import "../styles/App.scss";
 import dataApi from "../services/api";
-import Footer from "./Footer";
-import FormDesign from "./FormDesign";
 import Header from "./Header";
+import Reset from "./Reset";
+import CardPreview from "./CardPreview";
+import FormDesign from "./FormDesign";
+import Share from "./Share";
+import Footer from "./Footer";
 import Fill from "./Fill";
+
 function App() {
   const [person, setPerson] = useState({
     name: "",
@@ -14,16 +18,28 @@ function App() {
     linkedin: "",
     github: "",
     palette: "1",
-    image:
+    photo:
       "http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg",
   });
 
   const [resultUrl, setResultUrl] = useState({});
 
-  let paletteClass = "";
-
   const handleInput = (input, value) => {
-    setPerson({ ...person, [input]: value });
+    let paletteClass = "";
+    // const inputValue = ev.target.value;
+    // const inputName = ev.target.name;
+    let isValidValue = true;
+
+    if (input === "name" || input === "job") {
+      //puedo ir validando según voy escribiendo.
+      isValidValue = onlyLetters(value);
+    } else if (input === "phone") {
+      isValidValue = isPhoneNumber(value);
+    }
+
+    if (isValidValue) {
+      setPerson({ ...person, [input]: value });
+    }
 
     if (person.palette === "1") {
       paletteClass = "js-palette1";
@@ -48,127 +64,64 @@ function App() {
     });
   };
 
-  const handleShareBtn = (event) => {
-    event.preventDefault(event);
+  const createCard = () => {
     dataApi(person).then((data) => {
       console.log(data);
       setResultUrl(data);
     });
   };
 
+  const isValidMail = (event) => {
+    //se valida en el input al escribir email completo y pierde el foco
+    if (/^.+@.+$/.test(event.target.value)) {
+      return true;
+    }
+    alert("Debes introducir un mail válido!");
+    return false;
+  };
+
+  const isPhoneNumber = (phone) => {
+    var phoneno = /^\+?(\d*)$/;
+    if (phone.match(phoneno)) {
+      return true;
+    } else {
+      alert("Debes introducir un teléfono válido!");
+      return false;
+    }
+  };
+
+  const onlyLetters = (str) => {
+    if (/^[a-zA-Z\sá-úÁ-Ú´]*$/.test(str)) {
+      return true;
+    } else {
+      alert("El nombre solo puede contener letras");
+      return false;
+    }
+  };
+
   return (
     <div>
-      <header className="header">
-        <Header />
-      </header>
+      <Header />
       <main className="create">
         <section className="card-section">
-          <button className="reset js-reset" onClick={handleReset}>
-            <i className="reset-icon fa-regular fa-trash-can"></i>
-            <p className="reset-text">reset</p>
-          </button>
-          <article
-            className={`card js-preview-card js-palette${person.palette}`}
-          >
-            <div className="card-text">
-              <h2 className="card-text-name js-preview-name">
-                {person.name || "Nombre Apellidos"}
-              </h2>
-              <p className="card-text-job js-preview-job">
-                {" "}
-                {person.job || "Frontend unicorn"}
-              </p>
-            </div>
-            <div className="card-image js-card-img profile__image js__profile-image"></div>
-
-            <div className="social-media">
-              <a
-                href={`tel:${person.phone || "#"}`}
-                className="social-media-icon js-phone-icon"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <i className="fa-solid fa-mobile-screen-button"></i>
-              </a>
-              <a
-                href={`mailto:${person.email || "#"}`}
-                className="social-media-icon js-email-icon"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <i className="fa-regular fa-envelope"></i>
-              </a>
-              <a
-                href={`https://www.linkedin.com/in/${
-                  person.linkedin || "https://www.linkedin.com/404"
-                }`}
-                className="social-media-icon js-linkedin-icon"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <i className="fa-brands fa-linkedin-in"></i>
-              </a>
-              <a
-                href={`https://github.com/${person.github || "404"}`}
-                className="social-media-icon js-github-icon"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <i className="fa-brands fa-github-alt"></i>
-              </a>
-            </div>
-          </article>
+          <Reset btn={handleReset}></Reset>
+          <CardPreview person={person}></CardPreview>
         </section>
 
         <section>
           <form className="js-form" method="post">
-            <FormDesign object={person} setobjetc={setPerson} />
+            <FormDesign
+              object={person}
+              setobjetc={setPerson}
+              handleInput={handleInput}
+            />
 
             <Fill person={person} handleInput={handleInput} />
-
-            <fieldset className="share">
-              <div className="share__div">
-                <i className="fa-icon fa-solid fa-share-nodes share__div--icon"></i>
-                <legend className="share__div--legend">comparte</legend>
-                <i className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"></i>
-                <i className="fa fa-shield share__div--arrow js-arrow js-arrow-share-down"></i>
-              </div>
-
-              <button
-                className="share__button js-btn-create"
-                onClick={handleShareBtn}
-              >
-                <i className="fa-regular fa-address-card share__button--icon"></i>
-                crear tarjeta
-              </button>
-
-              <div className="share__card hidden js-share-card">
-                <h2 className="share__card--title">
-                  La tarjeta ha sido creada:
-                </h2>
-                <a
-                  className="share__card--url js-link-card"
-                  href={person.success ? person.cardURL : null}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {person.success ? person.cardURL : person.error}
-                </a>
-
-                <div className="share__twitter">
-                  <a
-                    className="share__twitter--twit twitter-share-button js-twitter"
-                    href="#"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fa-brands fa-twitter twitter-share-button__icon"></i>
-                    Compartir en twitter
-                  </a>
-                </div>
-                <p className="line"></p>
-              </div>
-            </fieldset>
+            <Share
+              person={person}
+              resultUrl={resultUrl}
+              createCard={createCard}
+            />
           </form>
         </section>
       </main>

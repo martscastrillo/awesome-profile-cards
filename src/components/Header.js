@@ -3,7 +3,7 @@ import "../styles/layout/Header.scss";
 
 const Header = () => {
   return (
-    <>
+    <header className="header">
       <a href="./index.html" className="header__link">
         <img
           src={logo}
@@ -12,7 +12,7 @@ const Header = () => {
         />
       </a>
       <h1 className="header__title">Awesome profile-cards</h1>
-    </>
+    </header>
   );
 };
 
