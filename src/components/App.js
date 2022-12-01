@@ -22,8 +22,8 @@ function App() {
 
   let paletteClass = "";
 
-  const handleInput = (inputName, inputValue) => {
-    setPerson({ ...person, [inputName]: inputValue });
+  const handleInput = (input, value) => {
+    setPerson({ ...person, [input]: value });
 
     if (person.palette === "1") {
       paletteClass = "js-palette1";
@@ -124,7 +124,7 @@ function App() {
           <form className="js-form" method="post">
             <FormDesign object={person} setobjetc={setPerson} />
 
-            <Fill person={person} handleInput={props.handleInput} />
+            <Fill person={person} handleInput={handleInput} />
 
             <fieldset className="share">
               <div className="share__div">

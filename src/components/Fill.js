@@ -1,3 +1,4 @@
+import "../styles/layout/FormFill.scss";
 const Fill = (props) => {
   const handleInput = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
