@@ -1,10 +1,31 @@
+import { useState } from 'react';
 import '../styles/layout/Share.scss';
 
 const Share = (props) => {
-  const handleShare = (event) => {
-    event.preventDefault(event);
-    props.createCard();
+  const [hidden, setHidden] = useState(true);
+  const [twitter, setTwitter] = useState(false);
+
+  const handleHidden = () => {
+    if (hidden) {
+      return setHidden(false);
+    }
   };
+
+  const handleShare = (event) => {
+    const handleTwitter = () => {
+      if (props.resultUrl.cardURL) {
+        setTwitter(true);
+      } else {
+        setTwitter(false);
+      }
+    };
+
+    event.preventDefault(event);
+    handleHidden();
+    props.createCard();
+    handleTwitter();
+  };
+
   return (
     <fieldset className="share">
       <div className="share__div">
@@ -19,7 +40,9 @@ const Share = (props) => {
         crear tarjeta
       </button>
 
-      <div className="share__card hidden js-share-card">
+      <div
+        className={`share__card js-share-card ${hidden ? 'hidden' : 'null'}`}
+      >
         <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
         <a
           className="share__card--url js-link-card"
@@ -29,13 +52,17 @@ const Share = (props) => {
         >
           {props.resultUrl.success
             ? props.resultUrl.cardURL
-            : props.resultUrl.error}
+            : 'Tienes que rellenar todos los datos'}
         </a>
 
         <div className="share__twitter">
           <a
             className="share__twitter--twit twitter-share-button js-twitter"
-            href="#"
+            href={
+              twitter
+                ? `https://twitter.com/intent/tweet?text=Aquí%20podéis%20ver%20mi%20tarjeta%20virtual&url=${props.resultUrl.cardURL}`
+                : null
+            }
             target="_blank"
             rel="noreferrer"
           >

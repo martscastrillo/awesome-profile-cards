@@ -24,6 +24,20 @@ function App() {
 
   const [resultUrl, setResultUrl] = useState({});
 
+  /*Para los collapse
+
+  const [hidden, setCollapse] = useState(true);
+
+  const handleCollapse = () => {
+    if (hidden) {
+      return setCollapse(false);
+    } 
+    else {
+      return setCollapse(true);
+    }
+  };
+*/
+
   const handleInput = (input, value) => {
     let paletteClass = '';
     let isValidValue = true;
