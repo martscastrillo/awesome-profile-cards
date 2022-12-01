@@ -7,6 +7,9 @@ import CardPreview from './CardPreview';
 import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
+import Cards from './Cards';
+import Landing from './Landing';
+import {Route, Routes} from 'react-router-dom';
 
 function App() {
   const [person, setPerson] = useState({
@@ -99,6 +102,12 @@ function App() {
   };
 
   return (
+    <>
+    <Routes>
+        <Route path='/landing' element={<Landing />} />
+        <Route path='/cards' element={<p>Comenzar</p>} />
+      </Routes>
+  
     <div>
       <Header />
       <main className="create">
@@ -256,6 +265,7 @@ function App() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }
 
