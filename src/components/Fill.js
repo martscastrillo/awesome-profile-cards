@@ -1,4 +1,5 @@
 import "../styles/layout/FormFill.scss";
+import GetAvatar from "./GetAvatar";
 const Fill = (props) => {
   const handleInput = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
@@ -53,8 +54,12 @@ const Fill = (props) => {
             className="fill__img--inputImg input js-input action__upload-btn"
             htmlFor="img-selector"
           >
-            añadir imagen
+            <GetAvatar
+              avatar={props.avatar}
+              updateAvatar={props.updateAvatar}
+            />
           </label>
+
           <input
             type="file"
             name=""
@@ -62,7 +67,12 @@ const Fill = (props) => {
             className="hidden js__profile-upload-btn"
           />
         </div>
-        <div className="profile__preview js__profile-preview"></div>
+
+        <div
+          className="profile__preview js__profile-preview"
+          style={{ backgroundImage: `url(${props.avatar})` }}
+        ></div>
+
         <div className="fill__email">
           <label className="fill__email--label text-label" htmlFor="email">
             email

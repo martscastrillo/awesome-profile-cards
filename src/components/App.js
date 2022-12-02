@@ -18,9 +18,12 @@ function App() {
     linkedin: "",
     github: "",
     palette: "1",
-    photo:
-      "http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg",
+    photo: "",
   });
+  const [avatar, setAvatar] = useState("");
+  const updateAvatar = (avatar) => {
+    setAvatar(avatar);
+  };
 
   const [resultUrl, setResultUrl] = useState({});
 
@@ -116,7 +119,12 @@ function App() {
               handleInput={handleInput}
             />
 
-            <Fill person={person} handleInput={handleInput} />
+            <Fill
+              person={person}
+              handleInput={handleInput}
+              updateAvatar={updateAvatar}
+              avatar={avatar}
+            />
             <Share
               person={person}
               resultUrl={resultUrl}
