@@ -11,7 +11,7 @@ import Footer from './Footer';
 import ls from '../services/localstorage';
 
 function App() {
-<<<<<<< HEAD
+
   const [person, setPerson] = useState({
     name: '',
     job: '',
@@ -23,7 +23,7 @@ function App() {
     photo:
       'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
   });
-=======
+
   const [person, setPerson] = useState(
     ls.get(
       'inputLS',
@@ -40,12 +40,12 @@ function App() {
       }
     )
   );
->>>>>>> fadf4c661b6bc010f3df317840aa74bf7cce1c1a
+
 
   const [resultUrl, setResultUrl] = useState({});
   const [hidden, setHidden] = useState(true);
 
-<<<<<<< HEAD
+
   /*Para los collapse
 
   const [hidden, setCollapse] = useState(true);
@@ -69,12 +69,12 @@ function App() {
 
   const handleInput = (input, value) => {
     let paletteClass = '';
-=======
+
   const handleInput = (ev) => {
     let paletteClass = '';
     const inputValue = ev.target.value;
     const inputName = ev.target.name;
->>>>>>> fadf4c661b6bc010f3df317840aa74bf7cce1c1a
+
     let isValidValue = true;
 
     if (input === 'name' || input === 'job') {
