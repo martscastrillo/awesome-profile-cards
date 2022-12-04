@@ -1,18 +1,36 @@
-import logo from "../images/woman.png";
+/* /* import { Link } from "react-router-dom";
+import logo from "../images/woman.png";  
 import "../styles/layout/Header.scss";
 
 const Header = () => {
   return (
     <header className="header">
-      <a href="./index.html" className="header__link">
-        <img
+   <Link to='/' className="header__link"> <img
           src={logo}
           alt="logo awesome profile-cards"
           className="header__link--img"
-        />
-      </a>
-      <h1 className="header__title">Awesome profile-cards</h1>
+        /></Link> 
+        <h2>HOLAs</h2>
     </header>
+  );
+};
+
+export default Header; */
+
+import{Link} from 'react-router-dom';
+import logo from "../images/woman.png"
+import "../styles/layout/HeaderLanding.scss";
+
+const Header = () => {
+  return (
+    <header className="header">
+    <Link to='/' className="header__link"> <img
+          src={logo}
+          alt="logo awesome profile-cards"
+          className="header__link--img"
+        /></Link>
+     
+     </header>
   );
 };
 
