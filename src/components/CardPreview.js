@@ -1,4 +1,4 @@
-import '../styles/layout/_card-section.scss';
+import '../styles/layout/CardSection.scss';
 
 function CardPreview(props) {
     return(

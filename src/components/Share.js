@@ -3,8 +3,10 @@ import '../styles/layout/Share.scss';
 const Share = (props) => {
   const handleShare = (event) => {
     event.preventDefault(event);
+    props.handleHidden();
     props.createCard();
   };
+
   return (
     <fieldset className="share">
       <div className="share__div">
@@ -19,7 +21,11 @@ const Share = (props) => {
         crear tarjeta
       </button>
 
-      <div className="share__card hidden js-share-card">
+      <div
+        className={`share__card js-share-card ${
+          props.hidden ? 'hidden' : 'null'
+        }`}
+      >
         <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
         <a
           className="share__card--url js-link-card"
@@ -29,13 +35,17 @@ const Share = (props) => {
         >
           {props.resultUrl.success
             ? props.resultUrl.cardURL
-            : props.resultUrl.error}
+            : 'Tienes que rellenar todos los datos'}
         </a>
 
         <div className="share__twitter">
           <a
             className="share__twitter--twit twitter-share-button js-twitter"
-            href="#"
+            href={
+              props.resultUrl.success
+                ? `https://twitter.com/intent/tweet?text=Aquí%20podéis%20ver%20mi%20tarjeta%20virtual&url=${props.resultUrl.cardURL}`
+                : null
+            }
             target="_blank"
             rel="noreferrer"
           >
