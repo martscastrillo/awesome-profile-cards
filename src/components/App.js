@@ -8,19 +8,25 @@ import Fill from './Fill';
 import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
+import ls from '../services/localstorage';
 
 function App() {
-  const [person, setPerson] = useState({
-    name: '',
-    job: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-    palette: '1',
-    photo:
-      'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
-  });
+  const [person, setPerson] = useState(
+    ls.get(
+      'inputLS',
+      {} || {
+        name: '',
+        job: '',
+        email: '',
+        phone: '',
+        linkedin: '',
+        github: '',
+        palette: '1',
+        image:
+          'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
+      }
+    )
+  );
 
   const [resultUrl, setResultUrl] = useState({});
   const [hidden, setHidden] = useState(true);
@@ -70,6 +76,7 @@ function App() {
     if (person.palette === '3') {
       paletteClass = 'js-palette3';
     }
+    ls.set('inputLS', person);
   };
 
   const handleReset = () => {
