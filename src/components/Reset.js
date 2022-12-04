@@ -1,5 +1,4 @@
 import "../styles/layout/CardSection.scss";
-
 function Reset(props) {
   return (
     <button className="reset js-reset" onClick={props.btn}>

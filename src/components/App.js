@@ -8,9 +8,6 @@ import Fill from './Fill';
 import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
-import Cards from './Cards';
-import Landing from './Landing';
-import {Route, Routes} from 'react-router-dom';
 import ls from '../services/localstorage';
 
 function App() {
@@ -30,10 +27,10 @@ function App() {
       }
     )
   );
-
+  
   const [resultUrl, setResultUrl] = useState({});
   const [hidden, setHidden] = useState(true);
-
+  const [palette, setPalette] = useState(1);
   /*Para los collapse
 
   const [hidden, setCollapse] = useState(true);
@@ -56,7 +53,7 @@ function App() {
   };
 
   const handleInput = (input, value) => {
-    let paletteClass = '';
+  
     let isValidValue = true;
 
     if (input === 'name' || input === 'job') {
@@ -71,13 +68,13 @@ function App() {
     }
 
     if (person.palette === '1') {
-      paletteClass = 'js-palette1';
+      setPalette(1);
     }
     if (person.palette === '2') {
-      paletteClass = 'js-palette2';
+      setPalette(2);
     }
     if (person.palette === '3') {
-      paletteClass = 'js-palette3';
+      setPalette(3);
     }
     ls.set('inputLS', person);
   };
@@ -131,11 +128,7 @@ function App() {
 
   return (
     <>
-    <Routes>
-        <Route path='/landing' element={<Landing />} />
-        <Route path='/cards' element={<p>Comenzar</p>} />
-      </Routes>
-  
+ 
     <div>
       <Header />
       <main className="create">
