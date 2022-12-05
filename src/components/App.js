@@ -28,6 +28,17 @@ function App() {
     )
   );
 
+  const [validations, setValidations] = useState(
+    {
+        isInvalidName: false,
+        isInvalidJob: false,
+        isInvalidMail: false,
+        isInvalidPhone: false,
+        isInvalidLinkedin: false,
+        isInvalidGithub: false,
+      }
+);
+
   const [resultUrl, setResultUrl] = useState({});
   const [hidden, setHidden] = useState(true);
 
@@ -56,11 +67,29 @@ function App() {
     let paletteClass = '';
     let isValidValue = true;
 
-    if (input === 'name' || input === 'job') {
+    if (input === 'name') {
       //puedo ir validando según voy escribiendo.
       isValidValue = onlyLetters(value);
+      if(isValidValue){
+        setValidations({...validations, isInvalidName : false });
+      }else {
+        setValidations({...validations, isInvalidName : true });
+      }
+    } else if(input === 'job') {
+      //puedo ir validando según voy escribiendo.
+      isValidValue = onlyLetters(value);
+      if(isValidValue){
+        setValidations({...validations, isInvalidJob : false });
+      }else {
+        setValidations({...validations, isInvalidJob : true });
+      }
     } else if (input === 'phone') {
       isValidValue = isPhoneNumber(value);
+      if(isValidValue){
+        setValidations({...validations, isInvalidPhone : false });
+      }else {
+        setValidations({...validations, isInvalidPhone : true });
+      }
     }
 
     if (isValidValue) {
@@ -101,9 +130,30 @@ function App() {
   const isValidMail = (event) => {
     //se valida en el input al escribir email completo y pierde el foco
     if (/^.+@.+$/.test(event.target.value)) {
+      setValidations({...validations, isInvalidMail : false });
       return true;
     }
-    alert('Debes introducir un mail válido!');
+    setValidations({...validations, isInvalidMail : true });
+    return false;
+  };
+
+  const isValidLinkedin = (event) => {
+    //se valida en el input al escribir email completo y pierde el foco
+    if (/^((http|https):\/\/)?www\.([A-z0-9]+)\.([A-z]{2,})/.test(event.target.value)) {
+      setValidations({...validations, isInvalidLinkedin : false });
+      return true;
+    }
+    setValidations({...validations, isInvalidLinkedin : true });
+    return false;
+  };
+
+  const isValidGithub = (event) => {
+    //se valida en el input al escribir email completo y pierde el foco
+    if (/^@.+$/.test(event.target.value)) {
+      setValidations({...validations, isInvalidGithub : false });
+      return true;
+    }
+    setValidations({...validations, isInvalidGithub : true });
     return false;
   };
 
@@ -112,7 +162,6 @@ function App() {
     if (phone.match(phoneno)) {
       return true;
     } else {
-      alert('Debes introducir un teléfono válido!');
       return false;
     }
   };
@@ -121,7 +170,6 @@ function App() {
     if (/^[a-zA-Z\sá-úÁ-Ú´]*$/.test(str)) {
       return true;
     } else {
-      alert('El nombre solo puede contener letras');
       return false;
     }
   };
@@ -142,7 +190,14 @@ function App() {
               setobjetc={setPerson}
               handleInput={handleInput}
             />
-            <Fill person={person} handleInput={handleInput} />
+            <Fill 
+              person={person} 
+              validations={validations}
+              handleInput={handleInput} 
+              isValidMail={isValidMail}
+              isValidGithub={isValidGithub}
+              isValidLinkedin={isValidLinkedin}
+            />
             <Share
               person={person}
               resultUrl={resultUrl}

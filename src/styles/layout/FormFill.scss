@@ -1,4 +1,5 @@
 @import "../core/variables";
+
 .input {
   border: 1px solid $newRed;
   width: 281px;
@@ -139,4 +140,20 @@
 .fa-shield {
   color: $newRed;
   font-size: 20px;
+}
+// añado clases para que cambie fondo del input y el estilo del span cuando hay campo inválido
+// en _variable.css añado clase hidden para que aparezca y desaparezca el span
+.invalid-field{
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.invalid-field::placeholder { 
+  color: grey;
+  opacity: 1;
+}
+
+.error-message{
+  color: red;
+  font-size: 10px;
+  margin-top: 5px;
 }
