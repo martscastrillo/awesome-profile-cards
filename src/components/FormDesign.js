@@ -1,16 +1,31 @@
-import '../styles/layout/FormDesign.scss';
+import { useState } from "react";
+import "../styles/layout/FormDesign.scss";
 
 function formDesign(props) {
   const handleDesign = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
   };
 
+  // const [formDesing, setFormDesing] = useState("");
+
+  // const handleClickDesing = (ev) => {
+  //   ev.preventDefault();
+  //   if (formDesing === "design__second js-design") {
+  //     setFormDesing("hidden");
+  //   } else {
+  //     setFormDesing("design__second js-design");
+  //   }
+  // };
+
   return (
     <fieldset className="design">
       <div className="design__div">
         <i className="fa-solid fa-object-ungroup design__div--icon"></i>
         <legend className="design__div--legend">diseña</legend>
-        <i className="fa fa-shield fa-shield-up design__div--arrow js-arrow js-arrow-design-up"></i>
+        <i
+          className="fa fa-shield fa-shield-up design__div--arrow js-arrow js-arrow-design-up"
+          // onClick={handleClickDesing}
+        ></i>
         <i className="fa fa-shield design__div--arrow js-arrow js-arrow-design-down collapsed"></i>
       </div>
 
@@ -25,7 +40,7 @@ function formDesign(props) {
                 name="palette"
                 className="js-palette2 p1 div2__palette--input"
                 value="1"
-                checked={props.object.palette === '1'}
+                checked={props.object.palette === "1"}
                 onChange={handleDesign}
               />
               <li className="div2__palette--darkGreen div2__palette--list"></li>
@@ -42,7 +57,7 @@ function formDesign(props) {
                 name="palette"
                 className="js-palette2 p2 div2__palette--input"
                 value="2"
-                checked={props.object.palette === '2'}
+                checked={props.object.palette === "2"}
                 onChange={handleDesign}
               />
               <li className="div2__palette--darkRed div2__palette--list"></li>
@@ -59,7 +74,7 @@ function formDesign(props) {
                 name="palette"
                 className="js-palette3 p3 div2__palette--input"
                 value="3"
-                checked={props.object.palette === '3'}
+                checked={props.object.palette === "3"}
                 onChange={handleDesign}
               />
               <li className="div2__palette--greenThree div2__palette--list"></li>

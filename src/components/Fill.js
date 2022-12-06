@@ -1,7 +1,18 @@
 import "../styles/layout/FormFill.scss";
+import { useState } from "react";
 const Fill = (props) => {
   const handleInput = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
+  };
+  const [formFill, setFormFill] = useState("hidden");
+
+  const handleClickFill = (ev) => {
+    ev.preventDefault();
+    if (formFill === "js-fill") {
+      setFormFill("hidden");
+    } else {
+      setFormFill("js-fill");
+    }
   };
 
   return (
@@ -9,11 +20,14 @@ const Fill = (props) => {
       <div className="fill__container js-fill-title">
         <i className="fa-regular fa-keyboard fill__container--icon"></i>
         <legend className="fill__container--legend">rellena</legend>
-        <i className="fa fa-shield fill__container--arrow js-arrow js-arrow-fill-down"></i>
+        <i
+          className="fa fa-shield fill__container--arrow js-arrow js-arrow-fill-down"
+          onClick={handleClickFill}
+        ></i>
         <i className="fa fa-shield fa-shield-up fill__container--arrow js-arrow js-arrow-fill-up collapsed"></i>
       </div>
-
-      <div className="js-fill">
+      {/* */}
+      <div className={formFill}>
         <div className="fill__name">
           <label className="fill__name--label text-label" htmlFor="name">
             nombre completo{" "}
