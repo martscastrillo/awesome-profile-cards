@@ -4,30 +4,43 @@ const Fill = (props) => {
   const handleInput = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
   };
-  const [formFill, setFormFill] = useState("hidden");
-
-  const handleClickFill = (ev) => {
-    ev.preventDefault();
-    if (formFill === "js-fill") {
-      setFormFill("hidden");
-    } else {
-      setFormFill("js-fill");
+  const handleClick = (ev) => {
+    props.handleCollapsed(ev.currentTarget.id);
+    console.log("hola fill");
+    if (ev.currentTarget.id === "fill") {
+      return false;
     }
   };
+  // const [formFill, setFormFill] = useState("hidden");
+
+  // const handleClickFill = (ev) => {
+  //   ev.preventDefault();
+  //   if (formFill === "js-fill") {
+  //     setFormFill("hidden");
+  //   } else {
+  //     setFormFill("js-fill");
+  //   }
+  // };
 
   return (
     <fieldset className="fill">
-      <div className="fill__container js-fill-title">
+      <div
+        className="fill__container js-fill-title"
+        onClick={handleClick}
+        id="fill"
+      >
         <i className="fa-regular fa-keyboard fill__container--icon"></i>
         <legend className="fill__container--legend">rellena</legend>
         <i
-          className="fa fa-shield fill__container--arrow js-arrow js-arrow-fill-down"
-          onClick={handleClickFill}
+          className={`fa fa-shield fill__container--arrow js-arrow js-arrow-fill-down ${
+            props.icon ? " null " : " arrow-fill-rotate "
+          }`}
         ></i>
-        <i className="fa fa-shield fa-shield-up fill__container--arrow js-arrow js-arrow-fill-up collapsed"></i>
+        {/* <i className="fa fa-shield fa-shield-up fill__container--arrow js-arrow js-arrow-fill-up collapsed"></i> */}
       </div>
       {/* */}
-      <div className={formFill}>
+      {}
+      <div className={`${props.collapsed ? "null" : "hidden"}`}>
         <div className="fill__name">
           <label className="fill__name--label text-label" htmlFor="name">
             nombre completo{" "}

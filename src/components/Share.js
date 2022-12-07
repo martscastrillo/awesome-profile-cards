@@ -5,28 +5,43 @@ const Share = (props) => {
     event.preventDefault(event);
     props.createCard();
   };
-  const [formShare, setFormShare] = useState("hidden");
-  const handleClickShare = (ev) => {
-    ev.preventDefault();
-    if (formShare === "") {
-      setFormShare("hidden");
-    } else {
-      setFormShare("");
+  const handleClick = (ev) => {
+    props.handleCollapsed(ev.currentTarget.id);
+    console.log(ev.currentTarget.id);
+    console.log(handleClick);
+    if (ev.currentTarget.id === "share") {
+      return false;
     }
+    // if (ev.currentTarget.id === "share") {
+    //   console.log("share if");
+    //   return (
+
+    //   )
   };
+
+  // const [formShare, setFormShare] = useState("hidden");
+  // const handleClickShare = (ev) => {
+  //   ev.preventDefault();
+  //   if (formShare === "") {
+  //     setFormShare("hidden");
+  //   } else {
+  //     setFormShare("");
+  //   }
+  // };
 
   return (
     <fieldset className="share">
-      <div className="share__div">
+      <div className="share__div" onClick={handleClick} id="share">
         <i className="fa-icon fa-solid fa-share-nodes share__div--icon"></i>
         <legend className="share__div--legend">comparte</legend>
-        <i className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"></i>
+        {/* <i className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"></i> */}
         <i
-          className="fa fa-shield share__div--arrow js-arrow js-arrow-share-down"
-          onClick={handleClickShare}
+          className={`fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up   ${
+            props.icon ? " null " : "arrow-share-rotate"
+          }`}
         ></i>
       </div>
-      <div className={formShare}>
+      <div className={`${props.collapsed ? "null" : "hidden"}`}>
         <button className="share__button" onClick={handleShare}>
           <i className="fa-regular fa-address-card share__button--icon"></i>
           crear tarjeta

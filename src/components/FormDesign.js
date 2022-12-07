@@ -5,6 +5,14 @@ function formDesign(props) {
   const handleDesign = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
   };
+  const handleClick = (ev) => {
+    props.handleCollapsed(ev.currentTarget.id);
+    console.log(ev.currentTarget.id);
+    console.log("hola");
+    if (ev.currentTarget.id === "desing") {
+      return true;
+    }
+  };
 
   // const [formDesing, setFormDesing] = useState("");
 
@@ -19,17 +27,23 @@ function formDesign(props) {
 
   return (
     <fieldset className="design">
-      <div className="design__div">
+      <div className="design__div" onClick={handleClick} id="design">
         <i className="fa-solid fa-object-ungroup design__div--icon"></i>
         <legend className="design__div--legend">diseña</legend>
         <i
-          className="fa fa-shield fa-shield-up design__div--arrow js-arrow js-arrow-design-up"
-          // onClick={handleClickDesing}
+          className={`fa fa-shield  design__div--arrow js-arrow js-arrow-design-up ${
+            props.icon ? "faShieldUp" : "null"
+          }`}
         ></i>
-        <i className="fa fa-shield design__div--arrow js-arrow js-arrow-design-down collapsed"></i>
+
+        {/* <i className="fa fa-shield design__div--arrow js-arrow js-arrow-design-down collapsed"></i> */}
       </div>
 
-      <div className="design__second js-design">
+      <div
+        className={`design__second js-design ${
+          props.collapsed ? "hidden" : "null"
+        }`}
+      >
         <div className="div2_container">
           <div className="div2">
             <ul className="div2__palette">
