@@ -1,20 +1,52 @@
+
 import "../styles/layout/FormFill.scss";
 import GetAvatar from "./GetAvatar";
+
+
 const Fill = (props) => {
   const handleInput = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
   };
 
+
+  const handleClick = (ev) => {
+    props.handleCollapsed(ev.currentTarget.id);
+   
+
+    if (ev.currentTarget.id === "fill") {
+      props.setCollapsed('fill');
+    }
+  };
+  // const [formFill, setFormFill] = useState("hidden");
+
+  // const handleClickFill = (ev) => {
+  //   ev.preventDefault();
+  //   if (formFill === "js-fill") {
+  //     setFormFill("hidden");
+  //   } else {
+  //     setFormFill("js-fill");
+  //   }
+  // };
+
   return (
     <fieldset className="fill">
-      <div className="fill__container js-fill-title">
+      <div
+        className="fill__container js-fill-title"
+        onClick={handleClick}
+        id="fill"
+      >
         <i className="fa-regular fa-keyboard fill__container--icon"></i>
         <legend className="fill__container--legend">rellena</legend>
-        <i className="fa fa-shield fill__container--arrow js-arrow js-arrow-fill-down"></i>
-        <i className="fa fa-shield fa-shield-up fill__container--arrow js-arrow js-arrow-fill-up collapsed"></i>
+        <i
+          className={`fa fa-shield fill__container--arrow js-arrow js-arrow-fill-up ${
+            props.collapsed === 'fill' ? "  " : " arrow-fill-rotate "
+          }`}
+        ></i>
+        {/* <i className="fa fa-shield fa-shield-up fill__container--arrow js-arrow js-arrow-fill-up collapsed"></i> */}
       </div>
-
-      <div className="js-fill">
+      {/* */}
+      {}
+      <div className={`${  props.collapsed === 'fill' ? "null" : "hidden"}`}>
         <div className="fill__name">
           <label className="fill__name--label text-label" htmlFor="name">
             nombre completo{" "}

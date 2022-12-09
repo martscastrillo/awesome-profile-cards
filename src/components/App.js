@@ -8,10 +8,12 @@ import Fill from './Fill';
 import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
-import Cards from './Cards';
+
 import Landing from './Landing';
 import {Route, Routes} from 'react-router-dom';
 import ls from '../services/localstorage';
+
+import imageprv from "../images/29089-wonder-woman-galgadot-46-1621920419.jpg";
 
 function App() {
   const [person, setPerson] = useState(
@@ -25,8 +27,8 @@ function App() {
         linkedin: '',
         github: '',
         palette: '1',
-        image:
-          'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
+        image:{imageprv}
+
       }
     )
   );
@@ -37,6 +39,13 @@ function App() {
   };
 
   const [resultUrl, setResultUrl] = useState({});
+  const [collapsed, setCollapsed] = useState("design");
+  
+
+  const handleCollapsed = () => {
+    setCollapsed('design');
+  }
+  
   const [hidden, setHidden] = useState(true);
 
   /*Para los collapse
@@ -158,18 +167,33 @@ function App() {
               object={person}
               setobjetc={setPerson}
               handleInput={handleInput}
+              handleCollapsed={handleCollapsed}
+              collapsed={collapsed}
+              setCollapsed ={setCollapsed}
+             
             />
 
             <Fill
               person={person}
               handleInput={handleInput}
+              handleCollapsed={handleCollapsed}
+              collapsed={collapsed}
+              setCollapsed ={setCollapsed}
               updateAvatar={updateAvatar}
               avatar={avatar}
             />
+
+
+        
+
             <Share
               person={person}
               resultUrl={resultUrl}
               createCard={createCard}
+
+              handleCollapsed={handleCollapsed}
+              setCollapsed ={setCollapsed}
+              collapsed={collapsed}
               handleHidden={handleHidden}
               hidden={hidden}
             />

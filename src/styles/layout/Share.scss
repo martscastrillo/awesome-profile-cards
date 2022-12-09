@@ -1,5 +1,4 @@
-@import '../core/variables';
-
+@import "../core/variables";
 .share {
   border: none;
   display: flex;
@@ -104,10 +103,9 @@
   color: $newRed;
   font-size: 20px;
 }
-/* .arrow-share-rotate{
-    transform: rotate(180deg);
-  } */
-
+.arrow-share-rotate {
+  transform: rotate(180deg);
+}
 .hidden {
   display: none;
 }
