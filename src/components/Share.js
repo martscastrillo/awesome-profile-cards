@@ -3,8 +3,10 @@ import { useState } from "react";
 const Share = (props) => {
   const handleShare = (event) => {
     event.preventDefault(event);
+    props.handleHidden();
     props.createCard();
   };
+<<<<<<< HEAD
   const propsicon =props.icon;
   const handleClick = (ev) => {
     props.handleCollapsed(ev.currentTarget.id);
@@ -29,6 +31,8 @@ const Share = (props) => {
   //     setFormShare("");
   //   }
   // };
+=======
+>>>>>>> dev
 
   return (
     <fieldset className="share">
@@ -48,11 +52,44 @@ const Share = (props) => {
           crear tarjeta
         </button>
 
+<<<<<<< HEAD
         <div className="share__card hidden js-share-card">
           <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
           <a
             className="share__card--url js-link-card"
             href={props.resultUrl.success ? props.resultUrl.cardURL : null}
+=======
+      <button className="share__button js-btn-create" onClick={handleShare}>
+        <i className="fa-regular fa-address-card share__button--icon"></i>
+        crear tarjeta
+      </button>
+
+      <div
+        className={`share__card js-share-card ${
+          props.hidden ? 'hidden' : 'null'
+        }`}
+      >
+        <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
+        <a
+          className="share__card--url js-link-card"
+          href={props.resultUrl.success ? props.resultUrl.cardURL : null}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {props.resultUrl.success
+            ? props.resultUrl.cardURL
+            : 'Tienes que rellenar todos los datos'}
+        </a>
+
+        <div className="share__twitter">
+          <a
+            className="share__twitter--twit twitter-share-button js-twitter"
+            href={
+              props.resultUrl.success
+                ? `https://twitter.com/intent/tweet?text=Aquí%20podéis%20ver%20mi%20tarjeta%20virtual&url=${props.resultUrl.cardURL}`
+                : null
+            }
+>>>>>>> dev
             target="_blank"
             rel="noreferrer"
           >
