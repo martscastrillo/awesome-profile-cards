@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import giphy from "../images/giphy.gif";
+import "../styles/layout/GetAvatar.scss";
 
 function GetAvatar(props) {
   // creamos una propiedad de la clase que es la que vamos a usar en varios métodos para cargar la imagen
@@ -65,7 +66,8 @@ function GetAvatar(props) {
         <input
           type="file"
           ref={myFileField}
-          className="get-avatar__upload-field"
+          id="photo"
+          className="hidden"
           onChange={uploadImage}
         />
       </label>
