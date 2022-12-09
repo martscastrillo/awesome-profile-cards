@@ -5,12 +5,12 @@ function formDesign(props) {
   const handleDesign = (ev) => {
     props.handleInput(ev.target.name, ev.target.value);
   };
+  
   const handleClick = (ev) => {
     props.handleCollapsed(ev.currentTarget.id);
-    console.log(ev.currentTarget.id);
-    console.log("hola");
-    if (ev.currentTarget.id === "desing") {
-      return true;
+        if (ev.currentTarget.id === "desing") {
+      props.setCollapsed('design');
+  
     }
   };
 
@@ -31,19 +31,15 @@ function formDesign(props) {
         <i className="fa-solid fa-object-ungroup design__div--icon"></i>
         <legend className="design__div--legend">diseña</legend>
         <i
-          className={`fa fa-shield  design__div--arrow js-arrow js-arrow-design-up ${
-            props.icon ? "faShieldUp" : "null"
+          className={`fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up ${
+            props.collapsed === 'design' ? " null " : "arrow-share-rotate"
           }`}
         ></i>
 
         {/* <i className="fa fa-shield design__div--arrow js-arrow js-arrow-design-down collapsed"></i> */}
       </div>
 
-      <div
-        className={`design__second js-design ${
-          props.collapsed ? "hidden" : "null"
-        }`}
-      >
+      <div className={`design__second js-design ${  props.collapsed === 'design' ? "null" : "hidden"}`} >
         <div className="div2_container">
           <div className="div2">
             <ul className="div2__palette">

@@ -5,12 +5,13 @@ const Share = (props) => {
     event.preventDefault(event);
     props.createCard();
   };
+  const propsicon =props.icon;
   const handleClick = (ev) => {
     props.handleCollapsed(ev.currentTarget.id);
-    console.log(ev.currentTarget.id);
-    console.log(handleClick);
+
+  
     if (ev.currentTarget.id === "share") {
-      return false;
+      props.setCollapsed('share');
     }
     // if (ev.currentTarget.id === "share") {
     //   console.log("share if");
@@ -37,11 +38,11 @@ const Share = (props) => {
         {/* <i className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"></i> */}
         <i
           className={`fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up   ${
-            props.icon ? " null " : "arrow-share-rotate"
+            props.collapsed === 'share' ? " null " : "arrow-share-rotate"
           }`}
         ></i>
       </div>
-      <div className={`${props.collapsed ? "null" : "hidden"}`}>
+      <div className={`${  props.collapsed === 'share' ? "null" : "hidden"}`}>
         <button className="share__button" onClick={handleShare}>
           <i className="fa-regular fa-address-card share__button--icon"></i>
           crear tarjeta

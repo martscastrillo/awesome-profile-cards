@@ -23,12 +23,12 @@ function App() {
   });
 
   const [resultUrl, setResultUrl] = useState({});
-  const [collapsed, setCollapsed] = useState("");
-  const [icon, setIcon] = useState("");
+  const [collapsed, setCollapsed] = useState("design");
+  
 
   const handleCollapsed = () => {
-    setCollapsed("");
-    setIcon("");
+    setCollapsed('design');
+  
   };
 
   const handleInput = (input, value) => {
@@ -123,7 +123,8 @@ function App() {
               handleInput={handleInput}
               handleCollapsed={handleCollapsed}
               collapsed={collapsed}
-              icon={icon}
+              setCollapsed ={setCollapsed}
+             
             />
 
             <Fill
@@ -131,15 +132,17 @@ function App() {
               handleInput={handleInput}
               handleCollapsed={handleCollapsed}
               collapsed={collapsed}
-              icon={icon}
+              setCollapsed ={setCollapsed}
+         
             />
             <Share
               person={person}
               resultUrl={resultUrl}
               createCard={createCard}
               handleCollapsed={handleCollapsed}
+              setCollapsed ={setCollapsed}
               collapsed={collapsed}
-              icon={icon}
+           
             />
           </form>
         </section>
