@@ -92,9 +92,7 @@ function App() {
       }
     }
 
-    if (isValidValue) {
-      setPerson({ ...person, [input]: value });
-    }
+    setPerson({ ...person, [input]: value });
 
     if (person.palette === '1') {
       paletteClass = 'js-palette1';
@@ -158,8 +156,7 @@ function App() {
   };
 
   const isPhoneNumber = (phone) => {
-    var phoneno = /^\+?(\d*)$/;
-    if (phone.match(phoneno)) {
+    if (/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/.test(phone)) {
       return true;
     } else {
       return false;
