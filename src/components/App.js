@@ -30,6 +30,11 @@ function App() {
       }
     )
   );
+  const [avatar, setAvatar] = useState("");
+  const updateAvatar = (avatar) => {
+    setAvatar(avatar);
+    setPerson({ ...person, photo: avatar });
+  };
 
   const [resultUrl, setResultUrl] = useState({});
   const [hidden, setHidden] = useState(true);
@@ -141,7 +146,10 @@ function App() {
       <main className="create">
         <section className="card-section">
           <Reset btn={handleReset}></Reset>
-          <CardPreview person={person}></CardPreview>
+          <CardPreview
+            person={person}
+            updateAvatar={updateAvatar}
+          ></CardPreview>
         </section>
 
         <section>
