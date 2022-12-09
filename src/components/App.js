@@ -8,6 +8,9 @@ import Fill from './Fill';
 import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
+import Cards from './Cards';
+import Landing from './Landing';
+import {Route, Routes} from 'react-router-dom';
 import ls from '../services/localstorage';
 
 function App() {
@@ -29,6 +32,14 @@ function App() {
   );
 
   const [resultUrl, setResultUrl] = useState({});
+<<<<<<< HEAD
+  const [collapsed, setCollapsed] = useState("design");
+  
+
+  const handleCollapsed = () => {
+    setCollapsed('design');
+  
+=======
   const [hidden, setHidden] = useState(true);
 
   /*Para los collapse
@@ -50,6 +61,7 @@ function App() {
       return setHidden(false);
     }
     //no pongo else porque no necesitamos volver a ocultarlo, si la usuaria quiere volver arriba a cambiar algo al abrir el collapse de formulario deberá cerrarse la sección de compartir
+>>>>>>> dev
   };
 
   const handleInput = (input, value) => {
@@ -127,6 +139,12 @@ function App() {
   };
 
   return (
+    <>
+    <Routes>
+        <Route path='/landing' element={<Landing />} />
+        <Route path='/cards' element={<p>Comenzar</p>} />
+      </Routes>
+  
     <div>
       <Header />
       <main className="create">
@@ -141,20 +159,44 @@ function App() {
               object={person}
               setobjetc={setPerson}
               handleInput={handleInput}
+              handleCollapsed={handleCollapsed}
+              collapsed={collapsed}
+              setCollapsed ={setCollapsed}
+             
             />
+<<<<<<< HEAD
+
+            <Fill
+              person={person}
+              handleInput={handleInput}
+              handleCollapsed={handleCollapsed}
+              collapsed={collapsed}
+              setCollapsed ={setCollapsed}
+         
+            />
+=======
             <Fill person={person} handleInput={handleInput} />
+>>>>>>> dev
             <Share
               person={person}
               resultUrl={resultUrl}
               createCard={createCard}
+<<<<<<< HEAD
+              handleCollapsed={handleCollapsed}
+              setCollapsed ={setCollapsed}
+              collapsed={collapsed}
+           
+=======
               handleHidden={handleHidden}
               hidden={hidden}
+>>>>>>> dev
             />
           </form>
         </section>
       </main>
       <Footer />
     </div>
+    </>
   );
 }
 
