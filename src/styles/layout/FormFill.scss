@@ -1,5 +1,4 @@
 @import "../core/variables";
-
 .input {
   border: 1px solid $newRed;
   width: 281px;
@@ -141,8 +140,11 @@
   color: $newRed;
   font-size: 20px;
 }
-// añado clases para que cambie fondo del input y el estilo del span cuando hay campo inválido
-// en _variable.css añado clase hidden para que aparezca y desaparezca el span
+
+.hidden {
+  display: none;
+}
+
 .invalid-field{
   background-color: rgba(255, 0, 0, 0.1);
 }

@@ -8,7 +8,12 @@ import Fill from './Fill';
 import FormDesign from './FormDesign';
 import Share from './Share';
 import Footer from './Footer';
+
+import Landing from './Landing';
+import {Route, Routes} from 'react-router-dom';
 import ls from '../services/localstorage';
+
+import imageprv from "../images/29089-wonder-woman-galgadot-46-1621920419.jpg";
 
 function App() {
   const [person, setPerson] = useState(
@@ -22,11 +27,16 @@ function App() {
         linkedin: '',
         github: '',
         palette: '1',
-        image:
-          'http://www.burrosminiatura.com/wp-content/uploads/2019/08/jenny-L.jpg',
+        image:{imageprv}
+
       }
     )
   );
+  const [avatar, setAvatar] = useState("");
+  const updateAvatar = (avatar) => {
+    setAvatar(avatar);
+    setPerson({ ...person, photo: avatar });
+  };
 
   const [validations, setValidations] = useState(
     {
@@ -40,6 +50,13 @@ function App() {
 );
 
   const [resultUrl, setResultUrl] = useState({});
+  const [collapsed, setCollapsed] = useState("design");
+  
+
+  const handleCollapsed = () => {
+    setCollapsed('design');
+  }
+  
   const [hidden, setHidden] = useState(true);
 
   /*Para los collapse
@@ -137,7 +154,7 @@ function App() {
 
   const isValidLinkedin = (event) => {
     //se valida en el input al escribir email completo y pierde el foco
-    if (/^((http|https):\/\/)?www\.([A-z0-9]+)\.([A-z]{2,})/.test(event.target.value)) {
+    if (/^((http|https):\/\/)?(www\.)?([A-z0-9]+)\.([A-z]{2,})/.test(event.target.value)) {
       setValidations({...validations, isInvalidLinkedin : false });
       return true;
     }
@@ -172,12 +189,21 @@ function App() {
   };
 
   return (
+    <>
+    <Routes>
+        <Route path='/landing' element={<Landing />} />
+        <Route path='/cards' element={<p>Comenzar</p>} />
+      </Routes>
+  
     <div>
       <Header />
       <main className="create">
         <section className="card-section">
           <Reset btn={handleReset}></Reset>
-          <CardPreview person={person}></CardPreview>
+          <CardPreview
+            person={person}
+            updateAvatar={updateAvatar}
+          ></CardPreview>
         </section>
 
         <section>
@@ -186,19 +212,34 @@ function App() {
               object={person}
               setobjetc={setPerson}
               handleInput={handleInput}
+              handleCollapsed={handleCollapsed}
+              collapsed={collapsed}
+              setCollapsed ={setCollapsed}
+             
             />
-            <Fill 
-              person={person} 
+
+            <Fill
+              person={person}
               validations={validations}
-              handleInput={handleInput} 
+              handleInput={handleInput}
+              handleCollapsed={handleCollapsed}
+              collapsed={collapsed}
+              setCollapsed ={setCollapsed}
+              updateAvatar={updateAvatar}
+              avatar={avatar}
               isValidMail={isValidMail}
               isValidGithub={isValidGithub}
               isValidLinkedin={isValidLinkedin}
             />
+            
             <Share
               person={person}
               resultUrl={resultUrl}
               createCard={createCard}
+
+              handleCollapsed={handleCollapsed}
+              setCollapsed ={setCollapsed}
+              collapsed={collapsed}
               handleHidden={handleHidden}
               hidden={hidden}
             />
@@ -207,6 +248,7 @@ function App() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }
 
