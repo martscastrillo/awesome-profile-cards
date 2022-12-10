@@ -19,7 +19,7 @@ function App() {
   const [person, setPerson] = useState(
     ls.get(
       'inputLS',
-      {} || {
+      {
         name: '',
         job: '',
         email: '',
@@ -27,7 +27,7 @@ function App() {
         linkedin: '',
         github: '',
         palette: '1',
-        image: { imageprv },
+        image:imageprv
       }
     )
   );
