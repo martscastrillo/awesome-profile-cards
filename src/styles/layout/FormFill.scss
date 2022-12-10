@@ -144,3 +144,18 @@
 .hidden {
   display: none;
 }
+
+.invalid-field{
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.invalid-field::placeholder { 
+  color: grey;
+  opacity: 1;
+}
+
+.error-message{
+  color: red;
+  font-size: 10px;
+  margin-top: 5px;
+}
