@@ -1,21 +1,17 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import '../styles/App.scss';
 import dataApi from '../services/api';
-import Header from './Header';
-import Reset from './Reset';
-import CardPreview from './CardPreview';
-import Fill from './Fill';
-import FormDesign from './FormDesign';
-import Share from './Share';
 import Footer from './Footer';
-import Cards from './Cards';
 import Landing from './Landing';
-import { Route, Routes } from 'react-router-dom';
+import Cards from './Cards';
 import ls from '../services/localstorage';
 
 import imageprv from '../images/29089-wonder-woman-galgadot-46-1621920419.jpg';
 
 function App() {
+
+
   const [person, setPerson] = useState(
     ls.get(
       'inputLS',
@@ -34,7 +30,7 @@ function App() {
   const [avatar, setAvatar] = useState('');
   const updateAvatar = (avatar) => {
     setAvatar(avatar);
-    setPerson({ ...person, photo: avatar });
+    setPerson({ ...person, image: avatar });
   };
 
   const [validations, setValidations] = useState({
@@ -45,6 +41,7 @@ function App() {
     isInvalidLinkedin: false,
     isInvalidGithub: false,
   });
+
 
   const [resultUrl, setResultUrl] = useState({});
   const [collapsed, setCollapsed] = useState('design');
@@ -190,59 +187,34 @@ function App() {
   };
 
   return (
-    <>
-      <div>
-        <Header />
-        <main className="create">
-          <section className="card-section">
-            <Reset btn={handleReset}></Reset>
-            <CardPreview
-              person={person}
-              updateAvatar={updateAvatar}
-            ></CardPreview>
-          </section>
-
-          <section>
-            <form className="js-form" method="post">
-              <FormDesign
-                object={person}
-                setobjetc={setPerson}
-                handleInput={handleInput}
-                handleCollapsed={handleCollapsed}
-                collapsed={collapsed}
-                setCollapsed={setCollapsed}
-              />
-
-              <Fill
-                person={person}
-                validations={validations}
-                handleInput={handleInput}
-                handleCollapsed={handleCollapsed}
-                collapsed={collapsed}
-                setCollapsed={setCollapsed}
-                updateAvatar={updateAvatar}
-                avatar={avatar}
-                isValidMail={isValidMail}
-                isValidGithub={isValidGithub}
-                isValidLinkedin={isValidLinkedin}
-              />
-
-              <Share
-                person={person}
-                resultUrl={resultUrl}
-                createCard={createCard}
-                handleCollapsed={handleCollapsed}
-                setCollapsed={setCollapsed}
-                collapsed={collapsed}
-                handleHidden={handleHidden}
-                hidden={hidden}
-              />
-            </form>
-          </section>
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div >
+     
+      <Routes>
+        <Route path='/'
+          element={<Landing />}></Route>
+        <Route path='/Cards'
+          element={<Cards 
+                      handleReset={handleReset} 
+                      handleInput={handleInput} 
+                      person={person}
+                      updateAvatar={updateAvatar} 
+                      handleHidden={handleHidden} 
+                      hidden={hidden} 
+                      resultUrl={resultUrl} 
+                      setPerson={setPerson} 
+                      createCard={createCard}
+                      handleCollapsed={handleCollapsed}
+                      setCollapsed={setCollapsed}
+                      collapsed={collapsed}
+                      validations={validations}
+                      avatar={avatar}
+                      isValidMail={isValidMail}
+                      isValidGithub={isValidGithub}
+                      isValidLinkedin={isValidLinkedin} />}>
+        </Route>
+      </Routes>
+      <Footer />
+    </div >
   );
 }
 

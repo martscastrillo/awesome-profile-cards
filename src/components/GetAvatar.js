@@ -66,7 +66,7 @@ function GetAvatar(props) {
         <input
           type="file"
           ref={myFileField}
-          id="photo"
+          id="image"
           className="hidden"
           onChange={uploadImage}
         />

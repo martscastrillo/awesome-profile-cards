@@ -21,7 +21,7 @@ function CardPreview(props) {
         alt="Preview image"
       >
         {" "}
-        {props.person.photo !== "" ? (
+        {props.person.image !== "" ? (
           <img className="card-image" src={props.person.image} alt="cosas" />
         ) : (
           ""
