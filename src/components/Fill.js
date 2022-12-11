@@ -198,7 +198,7 @@ const Fill = (props) => {
             onChange={handleInput}
             onBlur={handleOnBlurLinkedinInput}
             value={props.person.linkedin}
-            placeholder="http://linkedin.com/in/sally.hill"
+            placeholder="sally.hill"
             required
           />
           <span
