@@ -1,4 +1,4 @@
-import "../styles/layout/Share.scss";
+import '../styles/layout/Share.scss';
 
 const Share = (props) => {
   const handleShare = (event) => {
@@ -10,8 +10,7 @@ const Share = (props) => {
   const handleClick = (ev) => {
     props.handleCollapsed(ev.currentTarget.id);
 
-  
-    if (ev.currentTarget.id === "share") {
+    if (ev.currentTarget.id === 'share') {
       props.setCollapsed('share');
     }
     // if (ev.currentTarget.id === "share") {
@@ -39,55 +38,50 @@ const Share = (props) => {
         {/* <i className="fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up collapsed"></i> */}
         <i
           className={`fa fa-shield fa-shield-up share__div--arrow js-arrow js-arrow-share-up   ${
-            props.collapsed === 'share' ? " null " : "arrow-share-rotate"
+            props.collapsed === 'share' ? null : 'arrow-share-rotate'
           }`}
         ></i>
       </div>
-      <div className={`${  props.collapsed === 'share' ? "null" : "hidden"}`}>
+      <div className={`${props.collapsed === 'share' ? 'null' : 'hidden'}`}>
         <button className="share__button" onClick={handleShare}>
           <i className="fa-regular fa-address-card share__button--icon"></i>
           crear tarjeta
         </button>
 
-   
-      
-      <div
-        className={`share__card js-share-card ${
-          props.hidden ? 'hidden' : 'null'
-        }`}
-      >
-        <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
-        <a
-          className="share__card--url js-link-card"
-          href={props.resultUrl.success ? props.resultUrl.cardURL : null}
-          target="_blank"
-          rel="noreferrer"
+        <div
+          className={`share__card js-share-card ${
+            props.hidden ? 'hidden' : null
+          }`}
         >
-          {props.resultUrl.success
-            ? props.resultUrl.cardURL
-            : 'Tienes que rellenar todos los datos'}
-        </a>
-
-        <div className="share__twitter">
+          <h2 className="share__card--title">La tarjeta ha sido creada:</h2>
           <a
-            className="share__twitter--twit twitter-share-button js-twitter"
-            href={
-              props.resultUrl.success
-                ? `https://twitter.com/intent/tweet?text=Aquí%20podéis%20ver%20mi%20tarjeta%20virtual&url=${props.resultUrl.cardURL}`
-                : null
-            }
+            className="share__card--url js-link-card"
+            href={props.resultUrl.success ? props.resultUrl.cardURL : null}
             target="_blank"
             rel="noreferrer"
           >
             {props.resultUrl.success
               ? props.resultUrl.cardURL
-              : props.resultUrl.error}
+              : 'Tienes que rellenar todos los datos'}
           </a>
 
-         
+          <div className="share__twitter">
+            <a
+              className="share__twitter--twit twitter-share-button js-twitter"
+              href={
+                props.resultUrl.success
+                  ? `https://twitter.com/intent/tweet?text=Aquí%20podéis%20ver%20mi%20tarjeta%20virtual&url=${props.resultUrl.cardURL}`
+                  : null
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fa-brands fa-twitter twitter-share-button__icon"></i>
+              Compartir en twitter
+            </a>
+          </div>
           <p className="line"></p>
         </div>
-      </div>
       </div>
     </fieldset>
   );

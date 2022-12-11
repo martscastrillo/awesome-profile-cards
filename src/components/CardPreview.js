@@ -1,4 +1,4 @@
-import "../styles/layout/CardSection.scss";
+import '../styles/layout/CardSection.scss';
 
 function CardPreview(props) {
   return (
@@ -7,11 +7,11 @@ function CardPreview(props) {
     >
       <div className="card-text">
         <h2 className="card-text-name js-preview-name">
-          {props.person.name || "Nombre Apellidos"}
+          {props.person.name || 'Nombre Apellidos'}
         </h2>
         <p className="card-text-job js-preview-job">
-          {" "}
-          {props.person.job || "Frontend unicorn"}
+          {' '}
+          {props.person.job || 'Frontend unicorn'}
         </p>
       </div>
 
@@ -20,46 +20,46 @@ function CardPreview(props) {
         title="Preview image"
         alt="Preview image"
       >
-        {" "}
-        {props.person.image !== "" ? (
+        {' '}
+        {props.person.image !== '' ? (
           <img className="card-image" src={props.person.image} alt="cosas" />
         ) : (
-          ""
-        )}{" "}
+          ''
+        )}{' '}
       </div>
 
       <div className="social-media">
         <a
-          href={`tel:${props.person.phone || "#"}`}
+          href={`tel:${props.person.phone || '#'}`}
           className="social-media-icon js-phone-icon"
           target="_blank"
-          rel="noreferer"
+          rel="noreferrer"
         >
           <i className="fa-solid fa-mobile-screen-button"></i>
         </a>
         <a
-          href={`mailto:${props.person.email || "#"}`}
+          href={`mailto:${props.person.email || '#'}`}
           className="social-media-icon js-email-icon"
           target="_blank"
-          rel="noreferer"
+          rel="noreferrer"
         >
           <i className="fa-regular fa-envelope"></i>
         </a>
         <a
           href={`https://www.linkedin.com/in/${
-            props.person.linkedin || "https://www.linkedin.com/404"
+            props.person.linkedin || 'https://www.linkedin.com/404'
           }`}
           className="social-media-icon js-linkedin-icon"
           target="_blank"
-          rel="noreferer"
+          rel="noreferrer"
         >
           <i className="fa-brands fa-linkedin-in"></i>
         </a>
         <a
-          href={`https://github.com/${props.person.github || "404"}`}
+          href={`https://github.com/${props.person.github || '404'}`}
           className="social-media-icon js-github-icon"
           target="_blank"
-          rel="noreferer"
+          rel="noreferrer"
         >
           <i className="fa-brands fa-github-alt"></i>
         </a>
