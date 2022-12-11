@@ -120,6 +120,16 @@ function App() {
       palette: '1',
       photo: imageprv,
     });
+    ls.set('inputLS', {
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+      palette: '1',
+      photo: imageprv,
+    })
   };
 
   const createCard = () => {
