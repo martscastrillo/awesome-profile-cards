@@ -10,27 +10,22 @@ import ls from '../services/localstorage';
 import imageprv from '../images/29089-wonder-woman-galgadot-46-1621920419.jpg';
 
 function App() {
-
-
   const [person, setPerson] = useState(
-    ls.get(
-      'inputLS',
-      {
-        name: '',
-        job: '',
-        email: '',
-        phone: '',
-        linkedin: '',
-        github: '',
-        palette: '1',
-        image:imageprv
-      }
-    )
+    ls.get('inputLS', {
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+      palette: '1',
+      photo: imageprv,
+    })
   );
   const [avatar, setAvatar] = useState('');
   const updateAvatar = (avatar) => {
     setAvatar(avatar);
-    setPerson({ ...person, image: avatar });
+    setPerson({ ...person, photo: avatar });
   };
 
   const [validations, setValidations] = useState({
@@ -41,7 +36,6 @@ function App() {
     isInvalidLinkedin: false,
     isInvalidGithub: false,
   });
-
 
   const [resultUrl, setResultUrl] = useState({});
   const [collapsed, setCollapsed] = useState('design');
@@ -124,6 +118,7 @@ function App() {
       linkedin: '',
       github: '',
       palette: '1',
+      photo: imageprv,
     });
   };
 
@@ -146,11 +141,7 @@ function App() {
 
   const isValidLinkedin = (event) => {
     //se valida en el input al escribir email completo y pierde el foco
-    if (
-      /^((http|https):\/\/)?(www\.)?([A-z0-9]+)\.([A-z]{2,})/.test(
-        event.target.value
-      )
-    ) {
+    if (/^[a-zA-Z0-9._-]{5,30}$/.test(event.target.value)) {
       setValidations({ ...validations, isInvalidLinkedin: false });
       return true;
     }
@@ -160,7 +151,7 @@ function App() {
 
   const isValidGithub = (event) => {
     //se valida en el input al escribir email completo y pierde el foco
-    if (/^@.+$/.test(event.target.value)) {
+    if (/^[a-zA-Z0-9._-]{5,30}$/.test(event.target.value)) {
       setValidations({ ...validations, isInvalidGithub: false });
       return true;
     }
@@ -187,34 +178,36 @@ function App() {
   };
 
   return (
-    <div >
-     
+    <div>
       <Routes>
-        <Route path='/'
-          element={<Landing />}></Route>
-        <Route path='/Cards'
-          element={<Cards 
-                      handleReset={handleReset} 
-                      handleInput={handleInput} 
-                      person={person}
-                      updateAvatar={updateAvatar} 
-                      handleHidden={handleHidden} 
-                      hidden={hidden} 
-                      resultUrl={resultUrl} 
-                      setPerson={setPerson} 
-                      createCard={createCard}
-                      handleCollapsed={handleCollapsed}
-                      setCollapsed={setCollapsed}
-                      collapsed={collapsed}
-                      validations={validations}
-                      avatar={avatar}
-                      isValidMail={isValidMail}
-                      isValidGithub={isValidGithub}
-                      isValidLinkedin={isValidLinkedin} />}>
-        </Route>
+        <Route path="/" element={<Landing />}></Route>
+        <Route
+          path="/Cards"
+          element={
+            <Cards
+              handleReset={handleReset}
+              handleInput={handleInput}
+              person={person}
+              updateAvatar={updateAvatar}
+              handleHidden={handleHidden}
+              hidden={hidden}
+              resultUrl={resultUrl}
+              setPerson={setPerson}
+              createCard={createCard}
+              handleCollapsed={handleCollapsed}
+              setCollapsed={setCollapsed}
+              collapsed={collapsed}
+              validations={validations}
+              avatar={avatar}
+              isValidMail={isValidMail}
+              isValidGithub={isValidGithub}
+              isValidLinkedin={isValidLinkedin}
+            />
+          }
+        ></Route>
       </Routes>
       <Footer />
-    </div >
+    </div>
   );
 }
 

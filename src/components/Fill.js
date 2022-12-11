@@ -220,7 +220,7 @@ const Fill = (props) => {
             className={`fill__git--inputGit input js-github js-input ${
               props.validations.isInvalidGithub ? 'invalid-field' : ''
             }`}
-            placeholder="Ej: @sally-hill"
+            placeholder="Ej: sally-hill"
             onChange={handleInput}
             onBlur={handleOnBlurGithubInput}
             value={props.person.github}

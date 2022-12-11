@@ -21,8 +21,8 @@ function CardPreview(props) {
         alt="Preview image"
       >
         {' '}
-        {props.person.image !== '' ? (
-          <img className="card-image" src={props.person.image} alt="cosas" />
+        {props.person.photo !== '' ? (
+          <img className="card-image" src={props.person.photo} alt="cosas" />
         ) : (
           ''
         )}{' '}
@@ -46,9 +46,7 @@ function CardPreview(props) {
           <i className="fa-regular fa-envelope"></i>
         </a>
         <a
-          href={`https://www.linkedin.com/in/${
-            props.person.linkedin || 'https://www.linkedin.com/404'
-          }`}
+          href={`https://www.linkedin.com/${props.person.linkedin || '404'}`}
           className="social-media-icon js-linkedin-icon"
           target="_blank"
           rel="noreferrer"
