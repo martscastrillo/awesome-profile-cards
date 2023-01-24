@@ -1,6 +1,6 @@
 # Proyecto grupal Awesome Women Cards heredado
 
-![Awesome Women Cards](./web/src/images/woman_crop.png)
+<img width="300" src="https://user-images.githubusercontent.com/112553001/214281396-f512b7f3-0b98-4ade-91b0-83ad95f58757.png">
 
 ## Autoras
 
